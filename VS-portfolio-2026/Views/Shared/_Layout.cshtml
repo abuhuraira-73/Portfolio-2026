@@ -1,12 +1,132 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html class="no-js cunnet-dark" lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - VS_portfolio_2026</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Cunnet - Creative Portfolio Agency HTML Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/img/logo/favicon.png">
+
+    <!-- CSS here -->
+    @*<link rel="stylesheet" href="~/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/css/swiper-bundle.css">
+        <link rel="stylesheet" href="~/css/nice-select.css">
+        <link rel="stylesheet" href="~/css/magnific-popup.css">
+        <link rel="stylesheet" href="~/css/font-awesome-pro.css">
+        <link rel="stylesheet" href="~/css/spacing.css">
+        <link rel="stylesheet" href="~/css/main.css">*@
+
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/font-awesome-pro.css">
+
+    <link rel="stylesheet" href="~/css/swiper-bundle.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/nice-select.css">
+
+    <link rel="stylesheet" href="~/css/spacing.css">
+    <link rel="stylesheet" href="~/css/main.css">
+
+
 </head>
-<body>
-            @RenderBody()
+
+<body class="tp-magic-cursor">
+    <!-- preloader -->
+    <div id="preloader">
+        <div class="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!-- preloader end  -->
+    <!-- Begin magic cursor -->
+    <div id="magic-cursor" class="cursor-black-bg">
+        <div id="ball"></div>
+    </div>
+    <!-- End magic cursor -->
+    <!-- back to top start -->
+    <div class="back-to-top-wrapper">
+        <button id="back_to_top" type="button" class="back-to-top-btn">
+            <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 6L6 1L1 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+            </svg>
+        </button>
+    </div>
+    <!-- back to top end -->
+    <!-- offcanvas 2 start -->
+    <div class="tp-offcanvas-2-area p-relative">
+        <div class="offcanvas-bg"></div>
+        <div class="tp-offcanvas-2-wrapper offcanvas-menu">
+            <div class="tp-offcanvas-2-left">
+                <div class="tp-header-logo d-flex justify-content-between align-items-center mb-50">
+                    <a href="index-dark.html">
+                        <img class="logo-1" data-width="170" src="~/img/logo/logo.png" alt="">
+                        <img class="logo-2" data-width="170" src="~/img/logo/logo-white.png" alt="">
+                    </a>
+                    <span class="hamburger-close-btn">
+                        <svg width="37" height="38" viewBox="0 0 37 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.19141 9.80762L27.5762 28.1924" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M9.19141 28.1924L27.5762 9.80761" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </div>
+                <div class="tp-offcanvas-menu counter-row">
+                    <nav></nav>
+                </div>
+                <span class="hamburger-close-btn hamburger-mobile-close-btn d-md-none">CLOSE</span>
+            </div>
+        </div>
+    </div>
+    <!-- offcanvas 2 end -->
+
+
+
+    @RenderBody()
+
+    <!-- JS here -->
+    @*<script src="~/js/vendor/jquery.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/plugin.js"></script>
+        <script src="~/js/split-type.js"></script>
+        <script src="~/js/three.js"></script>
+        <script src="~/js/hover-effect.umd.js"></script>
+        <script src="~/js/swiper-bundle.js"></script>
+        <script src="~/js/magnific-popup.js"></script>
+        <script src="~/js/nice-select.js"></script>
+        <script src="~/js/purecounter.js"></script>
+        <script src="~/js/parallax.js"></script>
+        <script src="~/js/ajax-form.js"></script>
+        <script src="~/js/slider-init.js"></script>
+        <script src="~/js/main.js"></script>
+        <script src="~/js/tp-cursor.js"></script>*@
+
+    <!-- Core -->
+    <script src="~/js/vendor/jquery.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- Core plugins / helpers -->
+    <script src="~/js/plugin.js"></script>
+    <!-- Libraries used by effects -->
+    <script src="~/js/swiper-bundle.js"></script>
+    <script src="~/js/magnific-popup.js"></script>
+    <script src="~/js/nice-select.js"></script>
+    <script src="~/js/purecounter.js"></script>
+    <!-- Scroll / animation related (ORDER MATTERS) -->
+    <script src="~/js/three.js"></script>
+    <script src="~/js/hover-effect.umd.js"></script>
+    <script src="~/js/parallax.js"></script>
+    <script src="~/js/split-type.js"></script>
+    <!-- Feature initializers -->
+    <script src="~/js/slider-init.js"></script>
+    <script src="~/js/ajax-form.js"></script>
+    <!-- Main controller (MUST BE LAST) -->
+    <script src="~/js/main.js"></script>
+    <!-- Cursor (optional but last) -->
+    <script src="~/js/tp-cursor.js"></script>
+
 </body>
 </html>
 
