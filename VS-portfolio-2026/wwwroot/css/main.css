@@ -9023,31 +9023,37 @@ body.tp-magic-cursor #magic-cursor {
     opacity: 1;
 }
 #pp-porfolio-bg-box.pp-porfolio-bg-5 .pp-porfolio-bg-5 {
-        opacity: 1;
-        visibility: visible;
-        transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
 }
 
 #pp-porfolio-bg-box.pp-porfolio-bg-6 {
     opacity: 1;
 }
 #pp-porfolio-bg-box.pp-porfolio-bg-6 .pp-porfolio-bg-6 {
-        opacity: 1;
-        visibility: visible;
-        transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
 }
 
 #pp-porfolio-bg-box.pp-porfolio-bg-7 {
     opacity: 1;
 }
- #pp-porfolio-bg-box.pp-porfolio-bg-7 .pp-porfolio-bg-7 {
-        opacity: 1;
-        visibility: visible;
-        transform: scale(1);
+#pp-porfolio-bg-box.pp-porfolio-bg-7 .pp-porfolio-bg-7 {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
 }
 
 #pp-porfolio-bg-box.pp-porfolio-bg-8 {
     opacity: 1;
+}
+#pp-porfolio-bg-box.pp-porfolio-bg-8 .pp-porfolio-bg-8 {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
 }
 #pp-porfolio-bg-box.pp-porfolio-bg-8 .pp-porfolio-bg-8 {
         opacity: 1;
