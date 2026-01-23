@@ -14,11 +14,13 @@
     <Content Remove="wwwroot\css\" />
     <Content Remove="wwwroot\fonts\" />
     <Content Remove="wwwroot\js\" />
+    <Content Remove="wwwroot\img\my-img\service\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\img\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\fonts\" />
     <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\img\my-img\service\" />
   </ItemGroup>
 </Project>
