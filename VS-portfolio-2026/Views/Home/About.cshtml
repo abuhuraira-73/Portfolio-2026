@@ -176,74 +176,149 @@
                 <!-- about-me-resume-area-end -->
                 <!-- tp-skill-area-start -->
                 <div class="tp-skill-area pt-160">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center tp_fade_anim" data-delay=".3">
+                    <div class="tp-skill-marquee-wrapper">
+                        <div class="tp-skill-marquee-content">
+                            <!-- Original 9 Items -->
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
                                     <div class="tp-skill-icon mb-20">
                                         <img src="~/img/my-img/about/physics.png" alt="">
                                     </div>
                                     <span class="tp-skill-text">React</span>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center tp_fade_anim" data-delay=".4">
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
                                     <div class="tp-skill-icon mb-20">
                                         <img src="~/img/my-img/about/aspnet.png" alt="">
                                     </div>
                                     <span class="tp-skill-text">ASP .net</span>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center tp_fade_anim" data-delay=".6">
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
                                     <div class="tp-skill-icon mb-20">
                                         <img src="~/img/my-img/about/sql-server.png" alt="">
                                     </div>
                                     <span class="tp-skill-text">SQL</span>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center tp_fade_anim" data-delay=".3">
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
                                     <div class="tp-skill-icon mb-20">
                                         <img src="~/img/my-img/about/mongodb.png" alt="">
                                     </div>
                                     <span class="tp-skill-text">Mongo DB</span>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center tp_fade_anim" data-delay=".7">
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
                                     <div class="tp-skill-icon mb-20">
                                         <img src="~/img/my-img/about/python.png" alt="">
                                     </div>
                                     <span class="tp-skill-text">Python</span>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center tp_fade_anim" data-delay=".8">
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
                                     <div class="tp-skill-icon mb-20">
                                         <img src="~/img/my-img/about/java.png" alt="">
                                     </div>
                                     <span class="tp-skill-text">Java</span>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center tp_fade_anim" data-delay=".3">
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
                                     <div class="tp-skill-icon mb-20">
                                         <img src="~/img/my-img/about/figma.png" alt="">
                                     </div>
                                     <span class="tp-skill-text">Figma</span>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center tp_fade_anim" data-delay=".3">
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
                                     <div class="tp-skill-icon mb-20">
                                         <img src="~/img/my-img/about/photoshop.png" alt="">
                                     </div>
                                     <span class="tp-skill-text">Photoshop</span>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-6">
-                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center tp_fade_anim" data-delay=".5">
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
+                                    <div class="tp-skill-icon mb-20">
+                                        <img src="~/img/my-img/about/illustrator.png" alt="">
+                                    </div>
+                                    <span class="tp-skill-text">Illustrator</span>
+                                </div>
+                            </div>
+
+                            <!-- Duplicated Items for Infinite Scroll -->
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
+                                    <div class="tp-skill-icon mb-20">
+                                        <img src="~/img/my-img/about/physics.png" alt="">
+                                    </div>
+                                    <span class="tp-skill-text">React</span>
+                                </div>
+                            </div>
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
+                                    <div class="tp-skill-icon mb-20">
+                                        <img src="~/img/my-img/about/aspnet.png" alt="">
+                                    </div>
+                                    <span class="tp-skill-text">ASP .net</span>
+                                </div>
+                            </div>
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
+                                    <div class="tp-skill-icon mb-20">
+                                        <img src="~/img/my-img/about/sql-server.png" alt="">
+                                    </div>
+                                    <span class="tp-skill-text">SQL</span>
+                                </div>
+                            </div>
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
+                                    <div class="tp-skill-icon mb-20">
+                                        <img src="~/img/my-img/about/mongodb.png" alt="">
+                                    </div>
+                                    <span class="tp-skill-text">Mongo DB</span>
+                                </div>
+                            </div>
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
+                                    <div class="tp-skill-icon mb-20">
+                                        <img src="~/img/my-img/about/python.png" alt="">
+                                    </div>
+                                    <span class="tp-skill-text">Python</span>
+                                </div>
+                            </div>
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
+                                    <div class="tp-skill-icon mb-20">
+                                        <img src="~/img/my-img/about/java.png" alt="">
+                                    </div>
+                                    <span class="tp-skill-text">Java</span>
+                                </div>
+                            </div>
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
+                                    <div class="tp-skill-icon mb-20">
+                                        <img src="~/img/my-img/about/figma.png" alt="">
+                                    </div>
+                                    <span class="tp-skill-text">Figma</span>
+                                </div>
+                            </div>
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
+                                    <div class="tp-skill-icon mb-20">
+                                        <img src="~/img/my-img/about/photoshop.png" alt="">
+                                    </div>
+                                    <span class="tp-skill-text">Photoshop</span>
+                                </div>
+                            </div>
+                            <div class="tp-skill-marquee-item">
+                                <div class="tp-skill-item d-flex flex-column mb-25 align-items-center">
                                     <div class="tp-skill-icon mb-20">
                                         <img src="~/img/my-img/about/illustrator.png" alt="">
                                     </div>
@@ -360,4 +435,3 @@
 
 
             </main>
-
