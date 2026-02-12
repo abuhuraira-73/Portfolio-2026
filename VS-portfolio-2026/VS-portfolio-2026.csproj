@@ -22,5 +22,9 @@
     <Folder Include="wwwroot\fonts\" />
     <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\img\my-img\service\" />
+    <Folder Include="Views\Portfolio\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\Portfolio\" />
   </ItemGroup>
 </Project>
