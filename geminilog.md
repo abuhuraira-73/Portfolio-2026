@@ -108,3 +108,39 @@ SEO is not a one-time setup.
 *   **"Index Now" (Advanced):** If you start updating your site frequently, you can look into setting up "Index Now" to get your changes reflected in search results faster. This usually involves sending an API request to the search engines.
 
 By following this plan, you will have a solid SEO foundation for your portfolio.
+
+---
+
+### Phase 4: Backend Implementation Overview
+
+This section provides a high-level plan for building the backend, drawing from the successful structure of the previous portfolio.
+
+#### 1. Core Technology
+
+*   **Framework:** We will use ASP.NET Core MVC. This provides a robust, well-structured foundation for the website.
+*   **Language:** The backend logic will be written in C#.
+
+#### 2. Project Structure
+
+The project will follow the standard MVC pattern:
+*   **Models:** Define the data structures, such as for the contact form.
+*   **Views:** The `.cshtml` files that create the HTML sent to the user's browser.
+*   **Controllers:** Handle user requests, process data, and decide which view to show.
+
+#### 3. Backend Logic
+
+*   **Application Startup (`Program.cs`):** This file will configure all the necessary services and middleware (e.g., routing, static files).
+*   **Request Handling:** The `HomeController` will manage requests for the main pages (Home, About, etc.). A `PortfolioController` will handle requests for individual project pages.
+*   **Contact Form:** A `SubmitContact` method will handle POST requests from the contact form, validate the data, and save it to a MongoDB database.
+
+#### 4. Built-in SEO Best Practices
+
+Drawing from the previous project, the following SEO and user experience best practices will be implemented directly into the `_Layout.cshtml` shared view to ensure they are applied site-wide.
+
+*   **Comprehensive Meta Tags:** Include `<title>`, `<meta name="description">`, and `<meta name="keywords">` to provide essential information to search engines.
+*   **Open Graph (OG) Protocol:** Implement OG tags (`og:title`, `og:description`, `og:image`, etc.) to ensure links look great when shared on social media.
+*   **Rich Favicons:** Provide a full set of favicons for different devices and platforms (`favicon.ico`, `apple-touch-icon`, `site.webmanifest`).
+*   **Responsive Design:** Use viewport meta tags to ensure the site is mobile-friendly.
+*   **Semantic HTML & Accessibility:** Use semantic HTML5 elements (`<section>`, `<h1>`, etc.) and `alt` attributes on all images to improve accessibility and SEO.
+*   **Performance:** Optimize page load times by using modern image formats like `.webp`.
+
