@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="no-js cunnet-dark" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Admin Panel - @ViewData["Title"]</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="~/favicon_io/site.webmanifest">
+    <link rel="shortcut icon" href="~/favicon_io/favicon.ico">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/font-awesome-pro.css">
+    <link rel="stylesheet" href="~/css/swiper-bundle.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/nice-select.css">
+    <link rel="stylesheet" href="~/css/spacing.css">
+    <link rel="stylesheet" href="~/css/main.css">
+</head>
+
+<body class="tp-magic-cursor">
+    <!-- preloader -->
+    <div id="preloader">
+        <div class="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!-- preloader end  -->
+    <!-- Begin magic cursor -->
+    <div id="magic-cursor" class="cursor-black-bg">
+        <div id="ball"></div>
+    </div>
+    <!-- End magic cursor -->
+    <!-- back to top start -->
+    <div class="back-to-top-wrapper">
+        <button id="back_to_top" type="button" class="back-to-top-btn">
+            <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 6L6 1L1 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+    </div>
+    <!-- back to top end -->
+    
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+
+            @RenderBody()
+
+        </div>
+    </div>
+
+    <!-- JS here -->
+    <script src="~/js/vendor/jquery.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/plugin.js"></script>
+    <script src="~/js/swiper-bundle.js"></script>
+    <script src="~/js/magnific-popup.js"></script>
+    <script src="~/js/nice-select.js"></script>
+    <script src="~/js/purecounter.js"></script>
+    <script src="~/js/three.js"></script>
+    <script src="~/js/hover-effect.umd.js"></script>
+    <script src="~/js/parallax.js"></script>
+    <script src="~/js/split-type.js"></script>
+    <script src="~/js/slider-init.js"></script>
+    <script src="~/js/ajax-form.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/tp-cursor.js"></script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

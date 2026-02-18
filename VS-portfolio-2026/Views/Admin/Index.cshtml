@@ -1,0 +1,120 @@
+@model VS_portfolio_2026.Models.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<main class="profile__area pre-header tp-animate-tab pt-200 pb-160">
+    <div class="container">
+        <div class="profile__inner p-relative">
+            <div class="row">
+                <div class="col-xxl-4 col-lg-4">
+                    <div class="profile__tab mr-40">
+                        <nav>
+                            <div class="nav nav-tabs tp-tab-menu flex-column" id="profile-tab" role="tablist">
+                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                                    <span><i class="fa-regular fa-house"></i></span> Home
+                                </button>
+                                <button class="nav-link" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about" type="button" role="tab" aria-controls="nav-about" aria-selected="false">
+                                    <span><i class="fa-regular fa-user"></i></span> About
+                                </button>
+                                <button class="nav-link" id="nav-blog-tab" data-bs-toggle="tab" data-bs-target="#nav-blog" type="button" role="tab" aria-controls="nav-blog" aria-selected="false">
+                                    <span><i class="fa-regular fa-blog"></i></span> Blog
+                                </button>
+                                <button class="nav-link" id="nav-service-tab" data-bs-toggle="tab" data-bs-target="#nav-service" type="button" role="tab" aria-controls="nav-service" aria-selected="false">
+                                    <span><i class="fa-regular fa-star"></i></span> Service
+                                </button>
+                                 <button class="nav-link" id="nav-portfolio-tab" data-bs-toggle="tab" data-bs-target="#nav-portfolio" type="button" role="tab" aria-controls="nav-portfolio" aria-selected="false">
+                                    <span><i class="fa-regular fa-briefcase"></i></span> Portfolio
+                                </button>
+                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+                                    <span><i class="fa-regular fa-address-book"></i></span> Contact
+                                </button>
+                                <hr />
+                                <form asp-controller="Admin" asp-action="Logout" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="nav-link">
+                                        <span><i class="fa-regular fa-arrow-right-from-bracket"></i></span>
+                                        Logout
+                                    </button>
+                                </form>
+                                <a class="nav-link" href="~/" target="_blank">
+                                    <span><i class="fa-regular fa-external-link"></i></span>
+                                    View Live Site
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-xxl-8 col-lg-8">
+                    <div class="profile__tab-content">
+                        <div class="tab-content p-relative" id="profile-tabContent">
+                            
+                            <!-- Home Tab -->
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="profile__info">
+                                    <h3 class="profile__info-title">Home Page Management</h3>
+                                    
+                                    @if (!string.IsNullOrEmpty(Model.CvUploadSuccessMessage))
+                                    {
+                                        <div class="alert alert-success" role="alert">
+                                            @Model.CvUploadSuccessMessage
+                                        </div>
+                                    }
+
+                                    <div class="profile__main-info-item mb-30">
+                                        <h4 class="profile__main-info-title">Current CV</h4>
+                                        <p>@Model.CurrentCvFilename</p>
+                                    </div>
+        
+                                    <hr/>
+
+                                    <div class="profile__info-content mt-30">
+                                        <h4 class="profile__main-info-title mb-20">Upload New CV</h4>
+                                        <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="Index">
+                                            @Html.AntiForgeryToken()
+                                            <div class="row">
+                                                <div class="col-xxl-12">
+                                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                    <div class="profile__input-box">
+                                                        <div class="profile__input">
+                                                            <input asp-for="NewCvFile" type="file" class="form-control">
+                                                            <span asp-validation-for="NewCvFile" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-12">
+                                                    <div class="profile__btn mt-20">
+                                                        <button type="submit" class="tp-btn-cart sm">Upload & Replace CV</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Other Tabs with Placeholder Content -->
+                            <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                                <div class="profile__info"><h3 class="profile__info-title">About Page Management</h3><p>Content for managing the 'About' page will go here.</p></div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-blog" role="tabpanel" aria-labelledby="nav-blog-tab">
+                                <div class="profile__info"><h3 class="profile__info-title">Blog Management</h3><p>Content for managing the 'Blog' will go here.</p></div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-service" role="tabpanel" aria-labelledby="nav-service-tab">
+                                <div class="profile__info"><h3 class="profile__info-title">Service Page Management</h3><p>Content for managing the 'Service' page will go here.</p></div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-portfolio" role="tabpanel" aria-labelledby="nav-portfolio-tab">
+                                <div class="profile__info"><h3 class="profile__info-title">Portfolio Page Management</h3><p>Content for managing the 'Portfolio' page will go here.</p></div>
+                            </div>
+                             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <div class="profile__info"><h3 class="profile__info-title">Contact Page Management</h3><p>Content for managing the 'Contact' page will go here.</p></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,7 +1,35 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using MongoDB.Driver;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// MongoDB Configuration
+var mongoDbSettings = builder.Configuration.GetSection("MongoDbSettings");
+builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
+{
+    var connectionString = mongoDbSettings["ConnectionString"];
+    return new MongoClient(connectionString);
+});
+
+builder.Services.AddScoped<IMongoDatabase>(serviceProvider =>
+{
+    var client = serviceProvider.GetRequiredService<IMongoClient>();
+    var databaseName = mongoDbSettings["DatabaseName"];
+    return client.GetDatabase(databaseName);
+});
+
+// Authentication Configuration
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Admin/Login";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.SlidingExpiration = true;
+    });
+
 
 var app = builder.Build();
 
@@ -18,6 +46,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -25,4 +54,3 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-
