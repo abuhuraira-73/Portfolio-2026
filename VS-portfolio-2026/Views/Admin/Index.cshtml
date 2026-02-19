@@ -356,7 +356,37 @@
                                 <div class="profile__info"><h3 class="profile__info-title">Portfolio Page Management</h3><p>Content for managing the 'Portfolio' page will go here.</p></div>
                             </div>
                              <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                <div class="profile__info"><h3 class="profile__info-title">Contact Page Management</h3><p>Content for managing the 'Contact' page will go here.</p></div>
+                                <div class="profile__info">
+                                    <h3 class="profile__info-title">Contact Form Submissions</h3>
+                                    <hr />
+                                    <div class="profile__info-content mt-30">
+                                        <div class="profile__main-info">
+                                            @if(Model.Contacts != null && Model.Contacts.Any())
+                                            {
+                                                @foreach(var contact in Model.Contacts)
+                                                {
+                                                    <div class="profile__main-info-item mb-40 border-bottom pb-30">
+                                                        <h5 class="profile__main-info-title">From: @contact.Name</h5>
+                                                        <span><strong>Email:</strong> <a href="mailto:@contact.Email">@contact.Email</a></span><br>
+                                                        <span><strong>Subject:</strong> @(contact.Subject ?? "N/A")</span><br>
+                                                        <span class="text-muted">Received on: @contact.SubmittedAt.ToString("g")</span>
+                                                        <p class="mt-20" style="white-space: pre-wrap;">@contact.Message</p>
+                                                        <form method="post" asp-controller="Admin" asp-action="DeleteContact" asp-route-id="@contact.Id" class="mt-20">
+                                                            @Html.AntiForgeryToken()
+                                                            <button type="submit" class="tp-btn-cart-delete" onclick="return confirm('Are you sure you want to delete this message?');">
+                                                                <i class="fa-regular fa-xmark"></i> Delete Message
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <p>No contact messages have been received yet.</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>

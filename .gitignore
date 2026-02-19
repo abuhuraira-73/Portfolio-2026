@@ -403,3 +403,6 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+# ASP.NET Core local settings
+appsettings.Development.json

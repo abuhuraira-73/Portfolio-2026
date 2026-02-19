@@ -163,3 +163,40 @@ Implementing this feature revealed a significant and persistent bug that require
 -   **Incorrect Diagnosis**: The initial assumption was that other properties on the shared `AdminDashboardViewModel` (like the `NewCvFile`) were causing the validation to fail. This was incorrect.
 -   **Correct Diagnosis**: After further logging of the `ModelState` errors themselves, the specific error was identified: **`Error: Key=NewEducation.Id, Error=The Id field is required.`** The `Education` model's `Id` property, being a non-nullable string, was being treated as a required field by the model binder. Since the "Add" form doesn't (and shouldn't) provide an `Id`, the validation failed every time.
 -   **Final Solution**: The issue was resolved by implementing the correct software design pattern for this scenario. A dedicated `EducationInputModel` was created without the `Id` property. The `AddEducation` controller action was changed to accept this new input model. This correctly separates the data required *from the form* from the data model required *by the database*, finally resolving the `ModelState` validation error and allowing the data to be saved successfully.
+
+---
+## Update 4: Dynamic 'About Me' Experience Section
+
+Following the successful implementation for Education, the same dynamic functionality was applied to the "Experience" section of the "About" page.
+
+### 8.1. Data Models for Experience
+-   **`Experience.cs`**: A new model was created to represent a work experience entry in the `Experiences` collection, containing `Id`, `Year`, `Role`, `Company`, `Description`, and `DisplayOrder`.
+-   **`ExperienceInputModel.cs`**: A corresponding DTO was created for form submissions, containing all properties except for the database-generated `Id`.
+
+### 8.2. Admin Panel and Service Layer Updates
+-   **Admin UI**: The "About" tab in `Admin/Index.cshtml` was extended to include a new form for adding experiences and a separate list for displaying and deleting existing ones, mirroring the education UI.
+-   **Database Service**: The `IDatabaseService` and `MongoDbService` were updated to include methods for `GetExperiences`, `AddExperience`, and `DeleteExperience`, and to manage the new `Experiences` collection.
+-   **Admin Controller**: The `AdminController` was updated to fetch the list of experiences for the dashboard and to include `AddExperience` and `DeleteExperience` actions to handle the new form submissions.
+
+### 8.3. Public View (`About.cshtml`)
+-   **`AboutPageViewModel`**: To pass multiple lists of data to the view, a new `AboutPageViewModel.cs` was created to act as a container for both the `List<Education>` and `List<Experience>`.
+-   **Controller Update**: The `HomeController`'s `About` action was modified to fetch both lists from the database service and pass the new `AboutPageViewModel` to the view.
+-   **View Update**: The `About.cshtml` view was changed to use the new view model. A `@foreach` loop was added after the three static, hardcoded experience entries to dynamically render any additional experiences from the database, ensuring a consistent look.
+
+---
+## Update 5: Dynamic Blog Section
+
+The "Blog" page was converted from a static page to a fully dynamic one, allowing blog posts (in the form of LinkedIn embeds) to be managed from the admin panel.
+
+### 9.1. Data Models for Blog
+-   **`BlogPost.cs`**: A model was created to represent a blog post, containing `Id`, `LinkedInEmbedUrl`, `PostDate`, and a `DisplayOrder` property to allow for manual sorting.
+-   **`BlogPostInputModel.cs`**: A simple DTO was created for the "Add" form, containing only the `LinkedInEmbedUrl` and `DisplayOrder`. The `PostDate` is set automatically in the controller.
+
+### 9.2. Admin Panel and Service Layer Updates
+-   **Admin UI**: The "Blog" tab in `Admin/Index.cshtml` was implemented with a form to add a new LinkedIn embed URL and a `DisplayOrder` number. A list below the form shows all existing posts with their URL, date, order, and a "Delete" button.
+-   **Database Service**: The database service layer was extended to manage a new `BlogPosts` collection and included methods for `GetBlogPosts`, `AddBlogPost`, and `DeleteBlogPost`. The `GetBlogPosts` method sorts the results by `DisplayOrder`.
+-   **Admin Controller**: `AdminController` was updated to fetch the list of posts and to include `AddBlogPost` and `DeleteBlogPost` actions.
+
+### 9.3. Public View (`Blog.cshtml`)
+-   **Controller Update**: The `HomeController`'s `Blog` action was updated to fetch the sorted list of blog posts from the database service.
+-   **View Update**: The `Blog.cshtml` file was completely refactored. The static `<iframe>` elements were removed and replaced with a `@model` directive and a `@foreach` loop that dynamically generates the entire grid of embedded posts from the data passed by the controller, maintaining the original responsive layout and styling.

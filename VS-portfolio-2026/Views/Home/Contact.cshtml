@@ -1,4 +1,4 @@
-﻿@page
+﻿@model VS_portfolio_2026.Models.ContactInputModel
 @{
 }
 
@@ -25,38 +25,38 @@
                 </div>
                 <div class="col-xl-6">
                     <div class="tp-contact-me-form mb-30">
-                        <form id="contact-form" action="https://html.aqlova.com/cunnet-prev/cunnet/assets/mail.php"
-                            method="POST">
+                        <form id="contact-form" action="@Url.Action("Submit", "Contact")">
+                            @Html.AntiForgeryToken()
                             <h4 class="tp-contact-me-title tp-ff-sequel-semi-bold mb-25">Connect with Me...</h4>
-                            <input class="tp-input mb-15" name="name" type="text" placeholder="Name" required>
-                            <input class="tp-input mb-15" name="email" type="email" placeholder="Your Email" required>
-                            <input class="tp-input mb-15" name="company" type="text" placeholder="Company Name">
+                            <input class="tp-input mb-15" name="Name" type="text" placeholder="Name*" required>
+                            <input class="tp-input mb-15" name="Email" type="email" placeholder="Your Email*" required>
+                            <input class="tp-input mb-15" name="Subject" type="text" placeholder="Company Name">
                             <input class="tp-input mb-45" name="website" type="text" placeholder="Company Website">
                             <h4 class="tp-contact-me-title tp-ff-sequel-semi-bold mb-25">I'm Interested in...</h4>
-                            <div class="tp-contact-me-category mb-45 mr-180">
-                                <label for="id1">
-                                    <input id="id1" type="checkbox" name="branding">
-                                    <span>Branding</span>
-                                </label>
-                                <label for="id2">
-                                    <input id="id2" type="checkbox" name="branding2">
-                                    <span>Website</span>
-                                </label>
-                                <label for="id3">
-                                    <input id="id3" type="checkbox" name="branding3">
-                                    <span>Softwares</span>
-                                </label>
-                                <label for="id4">
-                                    <input id="id4" type="checkbox" name="branding4">
-                                    <span>Designing</span>
-                                </label>
-                                <label for="id5">
-                                    <input id="id5" type="checkbox" name="branding5">
-                                    <span>Other</span>
-                                </label>
+                            @* <div class="tp-contact-me-category mb-45 mr-180">
+                            <label for="id1">
+                            <input id="id1" type="checkbox" name="branding">
+                            <span>Branding</span>
+                            </label>
+                            <label for="id2">
+                            <input id="id2" type="checkbox" name="branding2">
+                            <span>Website</span>
+                            </label>
+                            <label for="id3">
+                            <input id="id3" type="checkbox" name="branding3">
+                            <span>Softwares</span>
+                            </label>
+                            <label for="id4">
+                            <input id="id4" type="checkbox" name="branding4">
+                            <span>Designing</span>
+                            </label>
+                            <label for="id5">
+                            <input id="id5" type="checkbox" name="branding5">
+                            <span>Other</span>
+                            </label>
 
-                            </div>
-                            <textarea class="tp-input tp-textarea mb-30" name="message" placeholder="Message"
+                            </div> *@
+                            <textarea class="tp-input tp-textarea mb-30" name="Message" placeholder="Message*"
                                 required></textarea>
                             <button type="submit" class="tp-btn tp-btn-red tp-btn-xl tp-ff-inter d-inline-block">
                                 <span>

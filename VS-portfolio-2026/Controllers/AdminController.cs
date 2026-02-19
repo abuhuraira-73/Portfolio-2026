@@ -93,6 +93,9 @@ namespace VS_portfolio_2026.Controllers
             // Data for "Blog" Tab
             var blogPosts = await _databaseService.GetBlogPosts();
 
+            // Data for "Contact" Tab
+            var contacts = await _databaseService.GetContacts();
+
             var model = new AdminDashboardViewModel
             {
                 CurrentCvFilename = currentCvFilename,
@@ -101,7 +104,8 @@ namespace VS_portfolio_2026.Controllers
                 Experiences = experiences,
                 NewExperience = new ExperienceInputModel(),
                 BlogPosts = blogPosts,
-                NewBlogPost = new BlogPostInputModel()
+                NewBlogPost = new BlogPostInputModel(),
+                Contacts = contacts
             };
 
             return View(model);
@@ -351,6 +355,29 @@ namespace VS_portfolio_2026.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while deleting blog post with ID: {id}", id);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteContact(string id)
+        {
+            _logger.LogInformation("DeleteContact POST received for ID: {id}", id);
+            try
+            {
+                if (string.IsNullOrEmpty(id))
+                {
+                    _logger.LogWarning("DeleteContact failed: ID was null or empty.");
+                    return RedirectToAction("Index");
+                }
+                await _databaseService.DeleteContact(id);
+                _logger.LogInformation("Successfully called DeleteContact service for ID: {id}", id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while deleting contact message with ID: {id}", id);
             }
 
             return RedirectToAction("Index");

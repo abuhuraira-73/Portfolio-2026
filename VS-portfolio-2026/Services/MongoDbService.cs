@@ -12,6 +12,7 @@ namespace VS_portfolio_2026.Services
         private readonly IMongoCollection<Education> _educations;
         private readonly IMongoCollection<Experience> _experiences;
         private readonly IMongoCollection<BlogPost> _blogPosts;
+        private readonly IMongoCollection<Contact> _contacts;
 
         public MongoDbService(IConfiguration configuration)
         {
@@ -25,6 +26,7 @@ namespace VS_portfolio_2026.Services
             _educations = database.GetCollection<Education>("Educations");
             _experiences = database.GetCollection<Experience>("Experiences");
             _blogPosts = database.GetCollection<BlogPost>("BlogPosts");
+            _contacts = database.GetCollection<Contact>("Contacts");
         }
 
         public async Task<Admin?> GetAdminByUsername(string username)
@@ -75,6 +77,21 @@ namespace VS_portfolio_2026.Services
         public async Task DeleteBlogPost(string id)
         {
             await _blogPosts.DeleteOneAsync(b => b.Id == id);
+        }
+
+        public async Task AddContact(Contact contact)
+        {
+            await _contacts.InsertOneAsync(contact);
+        }
+
+        public async Task<List<Contact>> GetContacts()
+        {
+            return await _contacts.Find(FilterDefinition<Contact>.Empty).SortByDescending(c => c.SubmittedAt).ToListAsync();
+        }
+
+        public async Task DeleteContact(string id)
+        {
+            await _contacts.DeleteOneAsync(c => c.Id == id);
         }
     }
 }

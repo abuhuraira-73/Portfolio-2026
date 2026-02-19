@@ -21,5 +21,8 @@ namespace VS_portfolio_2026.Models
         // For Blog Management
         public BlogPostInputModel NewBlogPost { get; set; }
         public List<BlogPost> BlogPosts { get; set; }
+
+        // For Contact Management
+        public List<Contact> Contacts { get; set; }
     }
 }

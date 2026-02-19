@@ -18,5 +18,9 @@ namespace VS_portfolio_2026.Services
         Task<List<BlogPost>> GetBlogPosts();
         Task AddBlogPost(BlogPost blogPost);
         Task DeleteBlogPost(string id);
+        Task AddContact(Contact contact);
+
+        Task<List<Contact>> GetContacts();
+        Task DeleteContact(string id);
     }
 }

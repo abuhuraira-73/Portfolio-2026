@@ -24,14 +24,14 @@ $(function() {
                 // Show waiting message before sending
                 $(formMessages).removeClass('success error');
                 $(formMessages).addClass('info');
-                $(formMessages).text('Please wait, mail is sending...');
+                $(formMessages).text('Please wait, your message is being sent...');
             }
         })
         .done(function(response) {
             // Success
             $(formMessages).removeClass('error info');
             $(formMessages).addClass('success');
-            $(formMessages).text(response);
+            $(formMessages).text(response.message);
 
             // Clear the form
             $('#contact-form input,#contact-form textarea').val('');
