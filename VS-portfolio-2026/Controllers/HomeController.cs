@@ -70,7 +70,15 @@ public class HomeController : Controller
     public async Task<IActionResult> About()
     {
         var educations = await _databaseService.GetEducations();
-        return View(educations);
+        var experiences = await _databaseService.GetExperiences();
+
+        var viewModel = new AboutPageViewModel
+        {
+            Educations = educations,
+            Experiences = experiences
+        };
+
+        return View(viewModel);
     }
 
 

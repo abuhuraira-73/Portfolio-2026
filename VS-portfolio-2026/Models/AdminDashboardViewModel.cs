@@ -14,6 +14,10 @@ namespace VS_portfolio_2026.Models
         public Education NewEducation { get; set; }
         public List<Education> Educations { get; set; }
 
+        // For Experience Management
+        public ExperienceInputModel NewExperience { get; set; }
+        public List<Experience> Experiences { get; set; }
+
         // We can add properties for other sections like Blogs here later
     }
 }

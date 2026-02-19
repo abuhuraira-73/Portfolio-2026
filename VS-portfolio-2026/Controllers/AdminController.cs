@@ -89,11 +89,16 @@ namespace VS_portfolio_2026.Controllers
             // Education Info
             var educations = await _databaseService.GetEducations();
 
+            // Experience Info
+            var experiences = await _databaseService.GetExperiences();
+
             var model = new AdminDashboardViewModel
             {
                 CurrentCvFilename = currentCvFilename,
                 Educations = educations,
-                NewEducation = new Education() // Initialize for the form
+                NewEducation = new Education(), // Initialize for the form
+                Experiences = experiences,
+                NewExperience = new ExperienceInputModel() // Initialize for the form
             };
 
             return View(model);
@@ -229,6 +234,69 @@ namespace VS_portfolio_2026.Controllers
                 _logger.LogError(ex, "An error occurred while deleting education entry with ID: {id}", id);
             }
             
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddExperience([Bind(Prefix = "NewExperience")] ExperienceInputModel input)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _logger.LogInformation("AddExperience ModelState is valid. Calling database service...");
+                    var newExperience = new Experience
+                    {
+                        Year = input.Year,
+                        Role = input.Role,
+                        Company = input.Company,
+                        Description = input.Description,
+                        DisplayOrder = input.DisplayOrder
+                    };
+                    await _databaseService.AddExperience(newExperience);
+                    _logger.LogInformation("Successfully called AddExperience service.");
+                }
+                else
+                {
+                    _logger.LogWarning("AddExperience ModelState is invalid. Could not add experience entry.");
+                    foreach (var state in ModelState)
+                    {
+                        foreach (var error in state.Value.Errors)
+                        {
+                            _logger.LogWarning("ModelState Error: Key={Key}, Error={ErrorMessage}", state.Key, error.ErrorMessage);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while adding the experience entry.");
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteExperience(string id)
+        {
+            _logger.LogInformation("DeleteExperience POST received for ID: {id}", id);
+            try
+            {
+                if (string.IsNullOrEmpty(id))
+                {
+                    _logger.LogWarning("DeleteExperience failed: ID was null or empty.");
+                    return RedirectToAction("Index");
+                }
+                await _databaseService.DeleteExperience(id);
+                _logger.LogInformation("Successfully called DeleteExperience service for ID: {id}", id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while deleting experience entry with ID: {id}", id);
+            }
+
             return RedirectToAction("Index");
         }
 

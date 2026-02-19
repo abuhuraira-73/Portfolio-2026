@@ -1,4 +1,4 @@
-﻿@model List<VS_portfolio_2026.Models.Education>
+﻿@model VS_portfolio_2026.Models.AboutPageViewModel
 @{
 }
 
@@ -181,9 +181,9 @@
                         </div>
                         </div> *@
 
-                        @if (Model != null && Model.Any())
+                        @if (Model != null && Model.Educations.Any())
                         {
-                            @foreach (var education in Model)
+                            @foreach (var education in Model.Educations)
                             {
                                 <div class="about-me-resume-item tp_fade_anim" data-delay=".5">
                                     <div class="row">
@@ -418,75 +418,105 @@
                 </div>
                 <div class="col-xl-10 offset-xl-2">
                     <div class="about-me-resume-wrap mt-40">
-                        <div class="about-me-resume-item tp_fade_anim" data-delay=".3">
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <div class="about-me-resume-date mb-30">
-                                        <span>Feb 2023 -<br>Mar 2025</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="about-me-resume-info ml-40 mb-30">
-                                        <h3 class="about-me-resume-title tp-ff-inter">Designing and Development</h3>
-                                        <span class="about-me-resume-location">Freelancing</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="about-me-resume-dec ml-50 mb-30">
-                                        <p>
-                                            Gained strong foundations in design systems, development workflows, and
-                                            usability.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+
+                        @* <div class="about-me-resume-item tp_fade_anim" data-delay=".3">
+                        <div class="row">
+                        <div class="col-lg-2">
+                        <div class="about-me-resume-date mb-30">
+                        <span>Feb 2023 -<br>Mar 2025</span>
                         </div>
-                        <div class="about-me-resume-item tp_fade_anim" data-delay=".4">
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <div class="about-me-resume-date mb-30">
-                                        <span>Sep 2025 -<br> Nov 2025</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="about-me-resume-info ml-40 mb-30">
-                                        <h3 class="about-me-resume-title tp-ff-inter">CSA</h3>
-                                        <span class="about-me-resume-location">Amazon</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="about-me-resume-dec ml-50 mb-30">
-                                        <p>
-                                            Gained hands-on experience in customer support, issue resolution, and
-                                            service operations.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <div class="about-me-resume-item tp_fade_anim" data-delay=".5">
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <div class="about-me-resume-date mb-30">
-                                        <span>Nov 2025 - <br>March 2025 </span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="about-me-resume-info ml-40 mb-30">
-                                        <h3 class="about-me-resume-title tp-ff-inter">SDS</h3>
-                                        <span class="about-me-resume-location">Amazon</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="about-me-resume-dec ml-50 mb-30">
-                                        <p>
-                                            Gained practical experience in logistics operations, process coordination,
-                                            and delivery systems.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-lg-5">
+                        <div class="about-me-resume-info ml-40 mb-30">
+                        <h3 class="about-me-resume-title tp-ff-inter">Designing and Development</h3>
+                        <span class="about-me-resume-location">Freelancing</span>
                         </div>
+                        </div>
+                        <div class="col-lg-5">
+                        <div class="about-me-resume-dec ml-50 mb-30">
+                        <p>
+                        Gained strong foundations in design systems, development workflows, and
+                        usability.
+                        </p>
+                        </div>
+                        </div>
+                        </div>
+                        </div> *@
+
+                        @* <div class="about-me-resume-item tp_fade_anim" data-delay=".4">
+                        <div class="row">
+                        <div class="col-lg-2">
+                        <div class="about-me-resume-date mb-30">
+                        <span>Sep 2025 -<br> Nov 2025</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-5">
+                        <div class="about-me-resume-info ml-40 mb-30">
+                        <h3 class="about-me-resume-title tp-ff-inter">CSA</h3>
+                        <span class="about-me-resume-location">Amazon</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-5">
+                        <div class="about-me-resume-dec ml-50 mb-30">
+                        <p>
+                        Gained hands-on experience in customer support, issue resolution, and
+                        service operations.
+                        </p>
+                        </div>
+                        </div>
+                        </div>
+                        </div> *@
+
+                        @* <div class="about-me-resume-item tp_fade_anim" data-delay=".5">
+                        <div class="row">
+                        <div class="col-lg-2">
+                        <div class="about-me-resume-date mb-30">
+                        <span>Nov 2025 - <br>March 2025 </span>
+                        </div>
+                        </div>
+                        <div class="col-lg-5">
+                        <div class="about-me-resume-info ml-40 mb-30">
+                        <h3 class="about-me-resume-title tp-ff-inter">SDS</h3>
+                        <span class="about-me-resume-location">Amazon</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-5">
+                        <div class="about-me-resume-dec ml-50 mb-30">
+                        <p>
+                        Gained practical experience in logistics operations, process coordination,
+                        and delivery systems.
+                        </p>
+                        </div>
+                        </div>
+                        </div>
+                        </div> *@
+
+                        @if (Model != null && Model.Experiences.Any())
+                        {
+                            @foreach (var experience in Model.Experiences)
+                            {
+                                <div class="about-me-resume-item tp_fade_anim" data-delay=".6">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <div class="about-me-resume-date mb-30">
+                                                <span>@experience.Year</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="about-me-resume-info ml-40 mb-30">
+                                                <h3 class="about-me-resume-title tp-ff-inter">@experience.Role</h3>
+                                                <span class="about-me-resume-location">@experience.Company</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="about-me-resume-dec ml-50 mb-30">
+                                                <p>@experience.Description</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
             </div>

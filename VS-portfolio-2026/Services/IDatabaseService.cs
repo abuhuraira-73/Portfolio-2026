@@ -10,5 +10,9 @@ namespace VS_portfolio_2026.Services
         Task<List<Education>> GetEducations();
         Task AddEducation(Education education);
         Task DeleteEducation(string id);
+
+        Task<List<Experience>> GetExperiences();
+        Task AddExperience(Experience experience);
+        Task DeleteExperience(string id);
     }
 }
