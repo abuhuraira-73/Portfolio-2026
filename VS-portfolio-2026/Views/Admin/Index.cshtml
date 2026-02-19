@@ -95,202 +95,260 @@
                             </div>
 
                             <!-- About Tab -->
-                            <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                                <div class="profile__info">
-                                    <h3 class="profile__info-title">About Page Management</h3>
-                                    
-                                    <hr/>
-
-                                    <div class="profile__info-content mt-30">
-                                        <h4 class="profile__main-info-title mb-20">Add New Education Entry</h4>
-                                        
-                                        <!-- Add Education Form -->
-                                        <div class="tp-contact-form-wrap">
-                                            <form method="post" asp-controller="Admin" asp-action="AddEducation">
-                                                @Html.AntiForgeryToken()
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="tp-contact-form-input mb-20">
-                                                            <label>Year*</label>
-                                                            <input asp-for="NewEducation.Year" type="text" placeholder="e.g., 2022 - 2025" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="tp-contact-form-input mb-20">
-                                                            <label>Display Order*</label>
-                                                            <input asp-for="NewEducation.DisplayOrder" type="number" placeholder="e.g., 1" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tp-contact-form-input mb-20">
-                                                            <label>Course*</label>
-                                                            <input asp-for="NewEducation.Course" type="text" placeholder="e.g., Bachelor’s in Computer Application" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tp-contact-form-input mb-20">
-                                                            <label>College/University*</label>
-                                                            <input asp-for="NewEducation.College" type="text" placeholder="e.g., Techno Main Salt Lake" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tp-contact-form-input mb-20">
-                                                            <label>Description*</label>
-                                                            <textarea asp-for="NewEducation.Description" placeholder="A short description of your experience" required></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="profile__btn mt-20">
-                                                            <button type="submit" class="tp-btn">Add Education</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                        <hr class="mt-60 mb-60" />
-
-                                        <!-- Existing Education List -->
-                                        <h4 class="profile__main-info-title mb-30">Existing Education Entries</h4>
-                                        <div class="about-me-resume-wrap">
-                                            @if(Model.Educations != null && Model.Educations.Any())
-                                            {
-                                                @foreach(var education in Model.Educations)
-                                                {
-                                                    <div class="about-me-resume-item tp_fade_anim" style="border-bottom: 1px solid #323232; padding-bottom: 30px;">
-                                                        <div class="row">
-                                                            <div class="col-lg-2">
-                                                                <div class="about-me-resume-date mb-30">
-                                                                    <span>@education.Year</span>
-                                                                    <br/>
-                                                                    <span class="mt-10 d-inline-block">Order: @education.DisplayOrder</span>
+                                                        <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                                                            <div class="profile__info">
+                                                                <h3 class="profile__info-title">About Page Management</h3>
+                                                                
+                                                                <hr/>
+                            
+                                                                <div class="profile__info-content mt-30">
+                                                                    <h4 class="profile__main-info-title mb-20">Add New Education Entry</h4>
+                                                                    
+                                                                    <!-- Add Education Form -->
+                                                                    <div class="tp-contact-form-wrap">
+                                                                        <form method="post" asp-controller="Admin" asp-action="AddEducation">
+                                                                            @Html.AntiForgeryToken()
+                                                                            <div class="row">
+                                                                                <div class="col-lg-6">
+                                                                                    <div class="tp-contact-form-input mb-20">
+                                                                                        <label>Year*</label>
+                                                                                        <input asp-for="NewEducation.Year" type="text" placeholder="e.g., 2022 - 2025" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-6">
+                                                                                    <div class="tp-contact-form-input mb-20">
+                                                                                        <label>Display Order*</label>
+                                                                                        <input asp-for="NewEducation.DisplayOrder" type="number" placeholder="e.g., 1" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-12">
+                                                                                    <div class="tp-contact-form-input mb-20">
+                                                                                        <label>Course*</label>
+                                                                                        <input asp-for="NewEducation.Course" type="text" placeholder="e.g., Bachelor’s in Computer Application" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-12">
+                                                                                    <div class="tp-contact-form-input mb-20">
+                                                                                        <label>College/University*</label>
+                                                                                        <input asp-for="NewEducation.College" type="text" placeholder="e.g., Techno Main Salt Lake" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-12">
+                                                                                    <div class="tp-contact-form-input mb-20">
+                                                                                        <label>Description*</label>
+                                                                                        <textarea asp-for="NewEducation.Description" placeholder="A short description of your experience" required></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-12">
+                                                                                    <div class="profile__btn mt-20">
+                                                                                        <button type="submit" class="tp-btn">Add Education</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                            
+                                                                    <hr class="mt-60 mb-60" />
+                            
+                                                                    <!-- Existing Education List -->
+                                                                    <h4 class="profile__main-info-title mb-30">Existing Education Entries</h4>
+                                                                    <div class="about-me-resume-wrap">
+                                                                        @if(Model.Educations != null && Model.Educations.Any())
+                                                                        {
+                                                                            @foreach(var education in Model.Educations)
+                                                                            {
+                                                                                <div class="about-me-resume-item tp_fade_anim" style="border-bottom: 1px solid #323232; padding-bottom: 30px;">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-2">
+                                                                                            <div class="about-me-resume-date mb-30">
+                                                                                                <span>@education.Year</span>
+                                                                                                <br/>
+                                                                                                <span class="mt-10 d-inline-block">Order: @education.DisplayOrder</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-5">
+                                                                                            <div class="about-me-resume-info ml-40 mb-30">
+                                                                                                <h3 class="about-me-resume-title tp-ff-inter">@education.Course</h3>
+                                                                                                <span class="about-me-resume-location">@education.College</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-5">
+                                                                                            <div class="about-me-resume-dec ml-50 mb-30">
+                                                                                                <p>@education.Description</p>
+                                                                                                <form method="post" asp-controller="Admin" asp-action="DeleteEducation" asp-route-id="@education.Id" class="mt-20">
+                                                                                                    @Html.AntiForgeryToken()
+                                                                                                    <button type="submit" class="tp-btn-cart-delete" onclick="return confirm('Are you sure you want to delete this entry?');">
+                                                                                                        <i class="fa-regular fa-xmark"></i> Delete
+                                                                                                    </button>
+                                                                                                </form>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <p>No education entries have been added yet.</p>
+                                                                        }
+                                                                    </div>
+                            
+                                                                    <hr class="mt-60 mb-60" />
+                            
+                                                                    <h4 class="profile__main-info-title mb-20">Add New Experience Entry</h4>
+                            
+                                                                    <!-- Add Experience Form -->
+                                                                    <div class="tp-contact-form-wrap">
+                                                                        <form method="post" asp-controller="Admin" asp-action="AddExperience">
+                                                                            @Html.AntiForgeryToken()
+                                                                            <div class="row">
+                                                                                <div class="col-lg-6">
+                                                                                    <div class="tp-contact-form-input mb-20">
+                                                                                        <label>Year*</label>
+                                                                                        <input asp-for="NewExperience.Year" type="text" placeholder="e.g., Feb 2023 - Mar 2025" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-6">
+                                                                                    <div class="tp-contact-form-input mb-20">
+                                                                                        <label>Display Order*</label>
+                                                                                        <input asp-for="NewExperience.DisplayOrder" type="number" placeholder="e.g., 1" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-6">
+                                                                                    <div class="tp-contact-form-input mb-20">
+                                                                                        <label>Role*</label>
+                                                                                        <input asp-for="NewExperience.Role" type="text" placeholder="e.g., Designing and Development" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-6">
+                                                                                    <div class="tp-contact-form-input mb-20">
+                                                                                        <label>Company*</label>
+                                                                                        <input asp-for="NewExperience.Company" type="text" placeholder="e.g., Freelancing" required>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-12">
+                                                                                    <div class="tp-contact-form-input mb-20">
+                                                                                        <label>Description*</label>
+                                                                                        <textarea asp-for="NewExperience.Description" placeholder="A short description of your experience" required></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-12">
+                                                                                    <div class="profile__btn mt-20">
+                                                                                        <button type="submit" class="tp-btn">Add Experience</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                            
+                                                                    <hr class="mt-60 mb-60" />
+                            
+                                                                    <!-- Existing Experience List -->
+                                                                    <h4 class="profile__main-info-title mb-30">Existing Experience Entries</h4>
+                                                                    <div class="about-me-resume-wrap">
+                                                                        @if(Model.Experiences != null && Model.Experiences.Any())
+                                                                        {
+                                                                            @foreach(var experience in Model.Experiences)
+                                                                            {
+                                                                                <div class="about-me-resume-item tp_fade_anim" style="border-bottom: 1px solid #323232; padding-bottom: 30px;">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-2">
+                                                                                            <div class="about-me-resume-date mb-30">
+                                                                                                <span>@experience.Year</span>
+                                                                                                <br />
+                                                                                                <span class="mt-10 d-inline-block">Order: @experience.DisplayOrder</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-5">
+                                                                                            <div class="about-me-resume-info ml-40 mb-30">
+                                                                                                <h3 class="about-me-resume-title tp-ff-inter">@experience.Role</h3>
+                                                                                                <span class="about-me-resume-location">@experience.Company</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-5">
+                                                                                            <div class="about-me-resume-dec ml-50 mb-30">
+                                                                                                <p>@experience.Description</p>
+                                                                                                <form method="post" asp-controller="Admin" asp-action="DeleteExperience" asp-route-id="@experience.Id" class="mt-20">
+                                                                                                    @Html.AntiForgeryToken()
+                                                                                                    <button type="submit" class="tp-btn-cart-delete" onclick="return confirm('Are you sure you want to delete this entry?');">
+                                                                                                        <i class="fa-regular fa-xmark"></i> Delete
+                                                                                                    </button>
+                                                                                                </form>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <p>No experience entries have been added yet.</p>
+                                                                        }
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-lg-5">
-                                                                <div class="about-me-resume-info ml-40 mb-30">
-                                                                    <h3 class="about-me-resume-title tp-ff-inter">@education.Course</h3>
-                                                                    <span class="about-me-resume-location">@education.College</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-5">
-                                                                <div class="about-me-resume-dec ml-50 mb-30">
-                                                                    <p>@education.Description</p>
-                                                                    <form method="post" asp-controller="Admin" asp-action="DeleteEducation" asp-route-id="@education.Id" class="mt-20">
-                                                                        @Html.AntiForgeryToken()
-                                                                        <button type="submit" class="tp-btn-cart-delete" onclick="return confirm('Are you sure you want to delete this entry?');">
-                                                                            <i class="fa-regular fa-xmark"></i> Delete
-                                                                        </button>
-                                                                    </form>
-                                                                </div>
+                            
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                }
-                                            }
-                                            else
-                                            {
-                                                <p>No education entries have been added yet.</p>
-                                            }
-                                        </div>
-
-                                        <hr class="mt-60 mb-60" />
-
-                                        <h4 class="profile__main-info-title mb-20">Add New Experience Entry</h4>
-
-                                        <!-- Add Experience Form -->
-                                        <div class="tp-contact-form-wrap">
-                                            <form method="post" asp-controller="Admin" asp-action="AddExperience">
-                                                @Html.AntiForgeryToken()
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="tp-contact-form-input mb-20">
-                                                            <label>Year*</label>
-                                                            <input asp-for="NewExperience.Year" type="text" placeholder="e.g., Feb 2023 - Mar 2025" required>
+                                                        <div class="tab-pane fade" id="nav-blog" role="tabpanel" aria-labelledby="nav-blog-tab">
+                                                            <div class="profile__info">
+                                                                <h3 class="profile__info-title">Blog Management</h3>
+                                                                <hr />
+                                                                                                    <div class="profile__info-content mt-30">
+                                                                                                        <h4 class="profile__main-info-title mb-20">Add New Blog Post</h4>
+                                                                
+                                                                                                        <div class="tp-contact-form-wrap">
+                                                                                                            <form method="post" asp-controller="Admin" asp-action="AddBlogPost">
+                                                                                                                @Html.AntiForgeryToken()
+                                                                                                                <div class="row">
+                                                                                                                    <div class="col-lg-6">
+                                                                                                                        <div class="tp-contact-form-input mb-20">
+                                                                                                                            <label>LinkedIn Embed URL*</label>
+                                                                                                                            <input asp-for="NewBlogPost.LinkedInEmbedUrl" type="url" placeholder="https://www.linkedin.com/embed/feed/update/..." required>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div class="col-lg-6">
+                                                                                                                        <div class="tp-contact-form-input mb-20">
+                                                                                                                            <label>Display Order*</label>
+                                                                                                                            <input asp-for="NewBlogPost.DisplayOrder" type="number" placeholder="e.g., 10" required>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div class="col-lg-12">
+                                                                                                                        <div class="profile__btn mt-20">
+                                                                                                                            <button type="submit" class="tp-btn">Add Blog Post</button>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </form>
+                                                                                                        </div>
+                                                                
+                                                                                                        <hr class="mt-60 mb-60" />
+                                                                
+                                                                                                        <h4 class="profile__main-info-title mb-30">Existing Blog Posts</h4>
+                                                                                                        <div class="profile__main-info">
+                                                                                                             @if(Model.BlogPosts != null && Model.BlogPosts.Any())
+                                                                                                            {
+                                                                                                                @foreach(var blogPost in Model.BlogPosts)
+                                                                                                                {
+                                                                                                                    <div class="profile__main-info-item mb-40 border-bottom pb-30">
+                                                                                                                        <p class="text-break">@blogPost.LinkedInEmbedUrl</p>
+                                                                                                                        <span class="text-muted d-block">Posted on: @blogPost.PostDate.ToString("d")</span>
+                                                                                                                        <span class="text-muted d-block">Order: @blogPost.DisplayOrder</span>
+                                                                                                                        <form method="post" asp-controller="Admin" asp-action="DeleteBlogPost" asp-route-id="@blogPost.Id" class="mt-20">
+                                                                                                                            @Html.AntiForgeryToken()
+                                                                                                                            <button type="submit" class="tp-btn-cart-delete" onclick="return confirm('Are you sure you want to delete this post?');">
+                                                                                                                                <i class="fa-regular fa-xmark"></i> Delete
+                                                                                                                            </button>
+                                                                                                                        </form>
+                                                                                                                    </div>
+                                                                                                                }
+                                                                                                            }
+                                                                                                            else
+                                                                                                            {
+                                                                                                                <p>No blog posts have been added yet.</p>
+                                                                                                            }
+                                                                                                        </div>
+                                                                                                    </div>                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="tp-contact-form-input mb-20">
-                                                            <label>Display Order*</label>
-                                                            <input asp-for="NewExperience.DisplayOrder" type="number" placeholder="e.g., 1" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="tp-contact-form-input mb-20">
-                                                            <label>Role*</label>
-                                                            <input asp-for="NewExperience.Role" type="text" placeholder="e.g., Designing and Development" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="tp-contact-form-input mb-20">
-                                                            <label>Company*</label>
-                                                            <input asp-for="NewExperience.Company" type="text" placeholder="e.g., Freelancing" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="tp-contact-form-input mb-20">
-                                                            <label>Description*</label>
-                                                            <textarea asp-for="NewExperience.Description" placeholder="A short description of your experience" required></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <div class="profile__btn mt-20">
-                                                            <button type="submit" class="tp-btn">Add Experience</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                        <hr class="mt-60 mb-60" />
-
-                                        <!-- Existing Experience List -->
-                                        <h4 class="profile__main-info-title mb-30">Existing Experience Entries</h4>
-                                        <div class="about-me-resume-wrap">
-                                            @if(Model.Experiences != null && Model.Experiences.Any())
-                                            {
-                                                @foreach(var experience in Model.Experiences)
-                                                {
-                                                    <div class="about-me-resume-item tp_fade_anim" style="border-bottom: 1px solid #323232; padding-bottom: 30px;">
-                                                        <div class="row">
-                                                            <div class="col-lg-2">
-                                                                <div class="about-me-resume-date mb-30">
-                                                                    <span>@experience.Year</span>
-                                                                    <br />
-                                                                    <span class="mt-10 d-inline-block">Order: @experience.DisplayOrder</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-5">
-                                                                <div class="about-me-resume-info ml-40 mb-30">
-                                                                    <h3 class="about-me-resume-title tp-ff-inter">@experience.Role</h3>
-                                                                    <span class="about-me-resume-location">@experience.Company</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-5">
-                                                                <div class="about-me-resume-dec ml-50 mb-30">
-                                                                    <p>@experience.Description</p>
-                                                                    <form method="post" asp-controller="Admin" asp-action="DeleteExperience" asp-route-id="@experience.Id" class="mt-20">
-                                                                        @Html.AntiForgeryToken()
-                                                                        <button type="submit" class="tp-btn-cart-delete" onclick="return confirm('Are you sure you want to delete this entry?');">
-                                                                            <i class="fa-regular fa-xmark"></i> Delete
-                                                                        </button>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                }
-                                            }
-                                            else
-                                            {
-                                                <p>No experience entries have been added yet.</p>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-blog" role="tabpanel" aria-labelledby="nav-blog-tab">
-                                <div class="profile__info"><h3 class="profile__info-title">Blog Management</h3><p>Content for managing the 'Blog' will go here.</p></div>
-                            </div>
                             <div class="tab-pane fade" id="nav-service" role="tabpanel" aria-labelledby="nav-service-tab">
                                 <div class="profile__info"><h3 class="profile__info-title">Service Page Management</h3><p>Content for managing the 'Service' page will go here.</p></div>
                             </div>

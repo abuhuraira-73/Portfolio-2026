@@ -86,19 +86,22 @@ namespace VS_portfolio_2026.Controllers
                 }
             }
 
-            // Education Info
+            // Data for "About" Tab
             var educations = await _databaseService.GetEducations();
-
-            // Experience Info
             var experiences = await _databaseService.GetExperiences();
+
+            // Data for "Blog" Tab
+            var blogPosts = await _databaseService.GetBlogPosts();
 
             var model = new AdminDashboardViewModel
             {
                 CurrentCvFilename = currentCvFilename,
                 Educations = educations,
-                NewEducation = new Education(), // Initialize for the form
+                NewEducation = new Education(),
                 Experiences = experiences,
-                NewExperience = new ExperienceInputModel() // Initialize for the form
+                NewExperience = new ExperienceInputModel(),
+                BlogPosts = blogPosts,
+                NewBlogPost = new BlogPostInputModel()
             };
 
             return View(model);
@@ -295,6 +298,59 @@ namespace VS_portfolio_2026.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while deleting experience entry with ID: {id}", id);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddBlogPost([Bind(Prefix = "NewBlogPost")] BlogPostInputModel input)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _logger.LogInformation("AddBlogPost ModelState is valid. Calling database service...");
+                    var newBlogPost = new BlogPost
+                    {
+                        LinkedInEmbedUrl = input.LinkedInEmbedUrl,
+                        PostDate = DateTime.UtcNow,
+                        DisplayOrder = input.DisplayOrder
+                    };
+                    await _databaseService.AddBlogPost(newBlogPost);
+                    _logger.LogInformation("Successfully called AddBlogPost service.");
+                }
+                else
+                {
+                    _logger.LogWarning("AddBlogPost ModelState is invalid.");
+                }
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while adding the blog post.");
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteBlogPost(string id)
+        {
+            _logger.LogInformation("DeleteBlogPost POST received for ID: {id}", id);
+            try
+            {
+                if (string.IsNullOrEmpty(id))
+                {
+                    _logger.LogWarning("DeleteBlogPost failed: ID was null or empty.");
+                    return RedirectToAction("Index");
+                }
+                await _databaseService.DeleteBlogPost(id);
+                _logger.LogInformation("Successfully called DeleteBlogPost service for ID: {id}", id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while deleting blog post with ID: {id}", id);
             }
 
             return RedirectToAction("Index");

@@ -98,9 +98,10 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Blog()
+    public async Task<IActionResult> Blog()
     {
-        return View();
+        var blogPosts = await _databaseService.GetBlogPosts();
+        return View(blogPosts);
     }
 
 

@@ -14,5 +14,9 @@ namespace VS_portfolio_2026.Services
         Task<List<Experience>> GetExperiences();
         Task AddExperience(Experience experience);
         Task DeleteExperience(string id);
+
+        Task<List<BlogPost>> GetBlogPosts();
+        Task AddBlogPost(BlogPost blogPost);
+        Task DeleteBlogPost(string id);
     }
 }

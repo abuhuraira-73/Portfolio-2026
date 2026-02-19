@@ -11,6 +11,7 @@ namespace VS_portfolio_2026.Services
         private readonly IMongoCollection<Admin> _admins;
         private readonly IMongoCollection<Education> _educations;
         private readonly IMongoCollection<Experience> _experiences;
+        private readonly IMongoCollection<BlogPost> _blogPosts;
 
         public MongoDbService(IConfiguration configuration)
         {
@@ -23,6 +24,7 @@ namespace VS_portfolio_2026.Services
             _admins = database.GetCollection<Admin>("Admins");
             _educations = database.GetCollection<Education>("Educations");
             _experiences = database.GetCollection<Experience>("Experiences");
+            _blogPosts = database.GetCollection<BlogPost>("BlogPosts");
         }
 
         public async Task<Admin?> GetAdminByUsername(string username)
@@ -58,6 +60,21 @@ namespace VS_portfolio_2026.Services
         public async Task DeleteExperience(string id)
         {
             await _experiences.DeleteOneAsync(e => e.Id == id);
+        }
+
+        public async Task<List<BlogPost>> GetBlogPosts()
+        {
+            return await _blogPosts.Find(FilterDefinition<BlogPost>.Empty).SortBy(b => b.DisplayOrder).ToListAsync();
+        }
+
+        public async Task AddBlogPost(BlogPost blogPost)
+        {
+            await _blogPosts.InsertOneAsync(blogPost);
+        }
+
+        public async Task DeleteBlogPost(string id)
+        {
+            await _blogPosts.DeleteOneAsync(b => b.Id == id);
         }
     }
 }

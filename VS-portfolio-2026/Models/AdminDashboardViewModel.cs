@@ -18,6 +18,8 @@ namespace VS_portfolio_2026.Models
         public ExperienceInputModel NewExperience { get; set; }
         public List<Experience> Experiences { get; set; }
 
-        // We can add properties for other sections like Blogs here later
+        // For Blog Management
+        public BlogPostInputModel NewBlogPost { get; set; }
+        public List<BlogPost> BlogPosts { get; set; }
     }
 }

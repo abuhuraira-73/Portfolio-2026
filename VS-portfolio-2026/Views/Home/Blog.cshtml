@@ -1,4 +1,4 @@
-﻿@page
+﻿@model List<VS_portfolio_2026.Models.BlogPost>
 @{
 }
 <style>
@@ -48,78 +48,26 @@
                 <div class="col-xxl-8 col-xl-8 col-lg-7">
                     <div class="tp-blog-masonary-content">
                         <div class="row gx-60">
-                            <!-- Post 1 (New, specified as first) -->
-                            <div class="col-xl-6 col-lg-12 col-md-6">
-                                <div class="cs-blog-item mb-70">
-                                    <iframe
-                                        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7374772659135508480?collapsed=1"
-                                        height="600" width="100%" frameborder="0" allowfullscreen=""
-                                        title="Embedded post"></iframe>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var blogPost in Model)
+                                {
+                                    <div class="col-xl-6 col-lg-12 col-md-6">
+                                        <div class="cs-blog-item mb-70">
+                                            <iframe
+                                                src="@blogPost.LinkedInEmbedUrl"
+                                                height="500" width="100%" frameborder="0" allowfullscreen=""
+                                                title="Embedded post"></iframe>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="col-12">
+                                    <p>No blog posts have been added yet. Check back soon!</p>
                                 </div>
-                            </div>
-                            <!-- Post 2 (Original first from previous turn) -->
-                            <div class="col-xl-6 col-lg-12 col-md-6">
-                                <div class="cs-blog-item mb-70">
-                                    <iframe
-                                        src="https://www.linkedin.com/embed/feed/update/urn:li:share:7414299394688069632"
-                                        height="600" width="100%" frameborder="0" allowfullscreen=""
-                                        title="Embedded post"></iframe>
-                                </div>
-                            </div>
-                            <!-- Post 3 (Original second from previous turn) -->
-                            <div class="col-xl-6 col-lg-12 col-md-6">
-                                <div class="cs-blog-item mb-70">
-                                    <iframe
-                                        src="https://www.linkedin.com/embed/feed/update/urn:li:share:7412536302862032896?collapsed=1"
-                                        height="600" width="100%" frameborder="0" allowfullscreen=""
-                                        title="Embedded post"></iframe>
-                                </div>
-                            </div>
-                            <!-- Post 4 (Second provided in this turn) -->
-                            <div class="col-xl-6 col-lg-12 col-md-6">
-                                <div class="cs-blog-item mb-70">
-                                    <iframe
-                                        src="https://www.linkedin.com/embed/feed/update/urn:li:share:7410288956321411072?collapsed=1"
-                                        height="600" width="100%" frameborder="0" allowfullscreen=""
-                                        title="Embedded post"></iframe>
-                                </div>
-                            </div>
-                            <!-- Post 5 (Third provided in this turn) -->
-                            <div class="col-xl-6 col-lg-12 col-md-6">
-                                <div class="cs-blog-item mb-70">
-                                    <iframe
-                                        src="https://www.linkedin.com/embed/feed/update/urn:li:share:7391693034414923776?collapsed=1"
-                                        height="600" width="100%" frameborder="0" allowfullscreen=""
-                                        title="Embedded post"></iframe>
-                                </div>
-                            </div>
-                            <!-- Post 6 (Fourth provided in this turn) -->
-                            <div class="col-xl-6 col-lg-12 col-md-6">
-                                <div class="cs-blog-item mb-70">
-                                    <iframe
-                                        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7360915212436189185?collapsed=1"
-                                        height="600" width="100%" frameborder="0" allowfullscreen=""
-                                        title="Embedded post"></iframe>
-                                </div>
-                            </div>
-                            <!-- Post 7 (Fifth provided in this turn) -->
-                            <div class="col-xl-6 col-lg-12 col-md-6">
-                                <div class="cs-blog-item mb-70">
-                                    <iframe
-                                        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7347190802143432704?collapsed=1"
-                                        height="600" width="100%" frameborder="0" allowfullscreen=""
-                                        title="Embedded post"></iframe>
-                                </div>
-                            </div>
-                            <!-- Post 8 (Generated from raw link) -->
-                            <div class="col-xl-6 col-lg-12 col-md-6">
-                                <div class="cs-blog-item mb-70">
-                                    <iframe
-                                        src="https://www.linkedin.com/embed/feed/update/urn:li:share:7300560629990326272?collapsed=1"
-                                        height="600" width="100%" frameborder="0" allowfullscreen=""
-                                        title="Embedded post"></iframe>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>
