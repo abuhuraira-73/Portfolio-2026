@@ -1,4 +1,4 @@
-﻿@page
+﻿@model List<VS_portfolio_2026.Models.Education>
 @{
 }
 
@@ -18,7 +18,7 @@
                                     stroke-linecap="round" />
                                 <path d="M23 13.8182L15.0349 19.1718L15.0349 8.46456L23 13.8182Z" fill="currentColor" />
                             </svg>
-                            About Us
+                            About Me
                         </span>
                     </div>
                 </div>
@@ -131,53 +131,82 @@
                 </div>
                 <div class="col-xl-10 offset-xl-2">
                     <div class="about-me-resume-wrap mt-40">
-                        <div class="about-me-resume-item tp_fade_anim" data-delay=".3">
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <div class="about-me-resume-date mb-30">
-                                        <span>2022 - 2025</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="about-me-resume-info ml-40 mb-30">
-                                        <h3 class="about-me-resume-title tp-ff-inter">Bachelor’s in Computer Application
-                                        </h3>
-                                        <span class="about-me-resume-location">Techno Main Salt Lake</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="about-me-resume-dec ml-50 mb-30">
-                                        <p>
-                                            Built strong fundamentals in programming, data structures, and software
-                                            engineering
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+
+                        @* <div class="about-me-resume-item tp_fade_anim" data-delay=".3">
+                        <div class="row">
+                        <div class="col-lg-2">
+                        <div class="about-me-resume-date mb-30">
+                        <span>2022 - 2025</span>
                         </div>
-                        <div class="about-me-resume-item tp_fade_anim" data-delay=".4">
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <div class="about-me-resume-date mb-30">
-                                        <span>2026 - 2028</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="about-me-resume-info ml-40 mb-30">
-                                        <h3 class="about-me-resume-title tp-ff-inter">Master’s in Computer Application
-                                        </h3>
-                                        <span class="about-me-resume-location">Techno India University</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="about-me-resume-dec ml-50 mb-30">
-                                        <p>
-                                            Advancing skills in scalable systems, software architecture, and development
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
+                        <div class="col-lg-5">
+                        <div class="about-me-resume-info ml-40 mb-30">
+                        <h3 class="about-me-resume-title tp-ff-inter">Bachelor’s in Computer Application
+                        </h3>
+                        <span class="about-me-resume-location">Techno Main Salt Lake</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-5">
+                        <div class="about-me-resume-dec ml-50 mb-30">
+                        <p>
+                        Built strong fundamentals in programming, data structures, and software
+                        engineering
+                        </p>
+                        </div>
+                        </div>
+                        </div>
+                        </div> *@
+
+                        @* <div class="about-me-resume-item tp_fade_anim" data-delay=".4">
+                        <div class="row">
+                        <div class="col-lg-2">
+                        <div class="about-me-resume-date mb-30">
+                        <span>2026 - 2028</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-5">
+                        <div class="about-me-resume-info ml-40 mb-30">
+                        <h3 class="about-me-resume-title tp-ff-inter">Master’s in Computer Application
+                        </h3>
+                        <span class="about-me-resume-location">Techno India University</span>
+                        </div>
+                        </div>
+                        <div class="col-lg-5">
+                        <div class="about-me-resume-dec ml-50 mb-30">
+                        <p>
+                        Advancing skills in scalable systems, software architecture, and development
+                        </p>
+                        </div>
+                        </div>
+                        </div>
+                        </div> *@
+
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var education in Model)
+                            {
+                                <div class="about-me-resume-item tp_fade_anim" data-delay=".5">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <div class="about-me-resume-date mb-30">
+                                                <span>@education.Year</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="about-me-resume-info ml-40 mb-30">
+                                                <h3 class="about-me-resume-title tp-ff-inter">@education.Course</h3>
+                                                <span class="about-me-resume-location">@education.College</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="about-me-resume-dec ml-50 mb-30">
+                                                <p>@education.Description</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
             </div>

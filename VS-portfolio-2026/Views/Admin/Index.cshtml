@@ -94,9 +94,107 @@
                                 </div>
                             </div>
 
-                            <!-- Other Tabs with Placeholder Content -->
+                            <!-- About Tab -->
                             <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                                <div class="profile__info"><h3 class="profile__info-title">About Page Management</h3><p>Content for managing the 'About' page will go here.</p></div>
+                                <div class="profile__info">
+                                    <h3 class="profile__info-title">About Page Management</h3>
+                                    
+                                    <hr/>
+
+                                    <div class="profile__info-content mt-30">
+                                        <h4 class="profile__main-info-title mb-20">Add New Education Entry</h4>
+                                        
+                                        <!-- Add Education Form -->
+                                        <div class="tp-contact-form-wrap">
+                                            <form method="post" asp-controller="Admin" asp-action="AddEducation">
+                                                @Html.AntiForgeryToken()
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="tp-contact-form-input mb-20">
+                                                            <label>Year*</label>
+                                                            <input asp-for="NewEducation.Year" type="text" placeholder="e.g., 2022 - 2025" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="tp-contact-form-input mb-20">
+                                                            <label>Display Order*</label>
+                                                            <input asp-for="NewEducation.DisplayOrder" type="number" placeholder="e.g., 1" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="tp-contact-form-input mb-20">
+                                                            <label>Course*</label>
+                                                            <input asp-for="NewEducation.Course" type="text" placeholder="e.g., Bachelor’s in Computer Application" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="tp-contact-form-input mb-20">
+                                                            <label>College/University*</label>
+                                                            <input asp-for="NewEducation.College" type="text" placeholder="e.g., Techno Main Salt Lake" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="tp-contact-form-input mb-20">
+                                                            <label>Description*</label>
+                                                            <textarea asp-for="NewEducation.Description" placeholder="A short description of your experience" required></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="profile__btn mt-20">
+                                                            <button type="submit" class="tp-btn">Add Education</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <hr class="mt-60 mb-60" />
+
+                                        <!-- Existing Education List -->
+                                        <h4 class="profile__main-info-title mb-30">Existing Education Entries</h4>
+                                        <div class="about-me-resume-wrap">
+                                            @if(Model.Educations != null && Model.Educations.Any())
+                                            {
+                                                @foreach(var education in Model.Educations)
+                                                {
+                                                    <div class="about-me-resume-item tp_fade_anim" style="border-bottom: 1px solid #323232; padding-bottom: 30px;">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <div class="about-me-resume-date mb-30">
+                                                                    <span>@education.Year</span>
+                                                                    <br/>
+                                                                    <span class="mt-10 d-inline-block">Order: @education.DisplayOrder</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <div class="about-me-resume-info ml-40 mb-30">
+                                                                    <h3 class="about-me-resume-title tp-ff-inter">@education.Course</h3>
+                                                                    <span class="about-me-resume-location">@education.College</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-5">
+                                                                <div class="about-me-resume-dec ml-50 mb-30">
+                                                                    <p>@education.Description</p>
+                                                                    <form method="post" asp-controller="Admin" asp-action="DeleteEducation" asp-route-id="@education.Id" class="mt-20">
+                                                                        @Html.AntiForgeryToken()
+                                                                        <button type="submit" class="tp-btn-cart-delete" onclick="return confirm('Are you sure you want to delete this entry?');">
+                                                                            <i class="fa-regular fa-xmark"></i> Delete
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <p>No education entries have been added yet.</p>
+                                            }
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                             <div class="tab-pane fade" id="nav-blog" role="tabpanel" aria-labelledby="nav-blog-tab">
                                 <div class="profile__info"><h3 class="profile__info-title">Blog Management</h3><p>Content for managing the 'Blog' will go here.</p></div>

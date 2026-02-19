@@ -4,6 +4,8 @@ using VS_portfolio_2026.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using VS_portfolio_2026.Services;
 
 namespace VS_portfolio_2026.Controllers;
 
@@ -11,11 +13,13 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IWebHostEnvironment _webHostEnvironment;
+    private readonly IDatabaseService _databaseService;
 
-    public HomeController(ILogger<HomeController> logger, IWebHostEnvironment webHostEnvironment)
+    public HomeController(ILogger<HomeController> logger, IWebHostEnvironment webHostEnvironment, IDatabaseService databaseService)
     {
         _logger = logger;
         _webHostEnvironment = webHostEnvironment;
+        _databaseService = databaseService;
     }
 
     // --- CV Download Action ---
@@ -63,10 +67,12 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult About()
+    public async Task<IActionResult> About()
     {
-        return View();
+        var educations = await _databaseService.GetEducations();
+        return View(educations);
     }
+
 
     public IActionResult Portfolio()
     {

@@ -4,28 +4,25 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
-using MongoDB.Driver;
 using System.IO;
-
 using Microsoft.AspNetCore.Hosting;
 using System.Linq;
-
 using Microsoft.Extensions.Logging;
+using VS_portfolio_2026.Services;
 
 namespace VS_portfolio_2026.Controllers
 {
     [Authorize] // Protect the whole controller
     public class AdminController : Controller
     {
-        private readonly IMongoDatabase _database;
+        private readonly IDatabaseService _databaseService;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly ILogger<AdminController> _logger;
 
-        public AdminController(IMongoDatabase database, IWebHostEnvironment webHostEnvironment, ILogger<AdminController> logger)
+        public AdminController(IDatabaseService databaseService, IWebHostEnvironment webHostEnvironment, ILogger<AdminController> logger)
         {
-            _database = database;
+            _databaseService = databaseService;
             _webHostEnvironment = webHostEnvironment;
             _logger = logger;
         }
@@ -44,8 +41,7 @@ namespace VS_portfolio_2026.Controllers
         {
             if (ModelState.IsValid)
             {
-                var adminCollection = _database.GetCollection<Admin>("Admins");
-                var adminUser = await adminCollection.Find(a => a.Username == model.Username).FirstOrDefaultAsync();
+                var adminUser = await _databaseService.GetAdminByUsername(model.Username);
 
                 if (adminUser != null && adminUser.Password == model.Password)
                 {
@@ -75,8 +71,9 @@ namespace VS_portfolio_2026.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            // CV Info
             var resumePath = Path.Combine(_webHostEnvironment.WebRootPath, "Resume");
             var currentCvFilename = "No CV uploaded yet.";
 
@@ -89,9 +86,14 @@ namespace VS_portfolio_2026.Controllers
                 }
             }
 
+            // Education Info
+            var educations = await _databaseService.GetEducations();
+
             var model = new AdminDashboardViewModel
             {
-                CurrentCvFilename = currentCvFilename
+                CurrentCvFilename = currentCvFilename,
+                Educations = educations,
+                NewEducation = new Education() // Initialize for the form
             };
 
             return View(model);
@@ -159,6 +161,75 @@ namespace VS_portfolio_2026.Controllers
             model.NewCvFile = null; // Clear the file input after post
 
             return View(model);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddEducation([Bind(Prefix = "NewEducation")] EducationInputModel input)
+        {
+            try
+            {
+                _logger.LogInformation("AddEducation POST received. Data: Year={Year}, Course={Course}, College={College}, Order={Order}",
+                    input.Year, input.Course, input.College, input.DisplayOrder);
+
+                if (ModelState.IsValid)
+                {
+                    _logger.LogInformation("AddEducation ModelState is valid. Creating new Education object and calling database service...");
+                    
+                    var newEducation = new Education
+                    {
+                        Year = input.Year,
+                        Course = input.Course,
+                        College = input.College,
+                        Description = input.Description,
+                        DisplayOrder = input.DisplayOrder
+                    };
+
+                    await _databaseService.AddEducation(newEducation);
+                    _logger.LogInformation("Successfully called AddEducation service.");
+                }
+                else
+                {
+                    _logger.LogWarning("AddEducation ModelState is invalid. Could not add education entry.");
+                    foreach (var state in ModelState)
+                    {
+                        foreach (var error in state.Value.Errors)
+                        {
+                            _logger.LogWarning("ModelState Error: Key={Key}, Error={ErrorMessage}", state.Key, error.ErrorMessage);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while adding the education entry.");
+            }
+            
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteEducation(string id)
+        {
+            _logger.LogInformation("DeleteEducation POST received for ID: {id}", id);
+            try
+            {
+                if (string.IsNullOrEmpty(id))
+                {
+                    _logger.LogWarning("DeleteEducation failed: ID was null or empty.");
+                    return RedirectToAction("Index");
+                }
+                await _databaseService.DeleteEducation(id);
+                _logger.LogInformation("Successfully called DeleteEducation service for ID: {id}", id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while deleting education entry with ID: {id}", id);
+            }
+            
+            return RedirectToAction("Index");
         }
 
 

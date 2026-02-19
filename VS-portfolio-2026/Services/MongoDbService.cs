@@ -1,0 +1,46 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
+using VS_portfolio_2026.Models;
+
+namespace VS_portfolio_2026.Services
+{
+    public class MongoDbService : IDatabaseService
+    {
+        private readonly IMongoCollection<Admin> _admins;
+        private readonly IMongoCollection<Education> _educations;
+
+        public MongoDbService(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetSection("MongoDbSettings")["ConnectionString"];
+            var databaseName = configuration.GetSection("MongoDbSettings")["DatabaseName"];
+
+            var client = new MongoClient(connectionString);
+            var database = client.GetDatabase(databaseName);
+
+            _admins = database.GetCollection<Admin>("Admins");
+            _educations = database.GetCollection<Education>("Educations");
+        }
+
+        public async Task<Admin?> GetAdminByUsername(string username)
+        {
+            return await _admins.Find(a => a.Username == username).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Education>> GetEducations()
+        {
+            return await _educations.Find(FilterDefinition<Education>.Empty).SortBy(e => e.DisplayOrder).ToListAsync();
+        }
+
+        public async Task AddEducation(Education education)
+        {
+            await _educations.InsertOneAsync(education);
+        }
+
+        public async Task DeleteEducation(string id)
+        {
+            await _educations.DeleteOneAsync(e => e.Id == id);
+        }
+    }
+}

@@ -1,25 +1,13 @@
-﻿using MongoDB.Driver;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using VS_portfolio_2026.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// MongoDB Configuration
-var mongoDbSettings = builder.Configuration.GetSection("MongoDbSettings");
-builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
-{
-    var connectionString = mongoDbSettings["ConnectionString"];
-    return new MongoClient(connectionString);
-});
-
-builder.Services.AddScoped<IMongoDatabase>(serviceProvider =>
-{
-    var client = serviceProvider.GetRequiredService<IMongoClient>();
-    var databaseName = mongoDbSettings["DatabaseName"];
-    return client.GetDatabase(databaseName);
-});
+// Register the new database service as a singleton
+builder.Services.AddSingleton<IDatabaseService, MongoDbService>();
 
 // Authentication Configuration
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

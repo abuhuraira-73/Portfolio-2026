@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace VS_portfolio_2026.Models
 {
@@ -8,6 +9,10 @@ namespace VS_portfolio_2026.Models
         public string? CurrentCvFilename { get; set; }
         public IFormFile? NewCvFile { get; set; }
         public string? CvUploadSuccessMessage { get; set; }
+
+        // For Education Management
+        public Education NewEducation { get; set; }
+        public List<Education> Educations { get; set; }
 
         // We can add properties for other sections like Blogs here later
     }
