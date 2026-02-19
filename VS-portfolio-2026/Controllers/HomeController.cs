@@ -82,9 +82,10 @@ public class HomeController : Controller
     }
 
 
-    public IActionResult Portfolio()
+    public async Task<IActionResult> Portfolio()
     {
-        return View();
+        var projects = await _databaseService.GetProjects();
+        return View(projects);
     }
 
     public IActionResult Service()

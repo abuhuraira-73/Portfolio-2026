@@ -24,5 +24,9 @@ namespace VS_portfolio_2026.Models
 
         // For Contact Management
         public List<Contact> Contacts { get; set; }
+
+        // For Project Management
+        public ProjectInputModel NewProject { get; set; }
+        public List<Project> Projects { get; set; }
     }
 }

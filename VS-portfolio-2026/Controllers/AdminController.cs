@@ -96,6 +96,9 @@ namespace VS_portfolio_2026.Controllers
             // Data for "Contact" Tab
             var contacts = await _databaseService.GetContacts();
 
+            // Data for "Portfolio" Tab
+            var projects = await _databaseService.GetProjects();
+
             var model = new AdminDashboardViewModel
             {
                 CurrentCvFilename = currentCvFilename,
@@ -105,7 +108,9 @@ namespace VS_portfolio_2026.Controllers
                 NewExperience = new ExperienceInputModel(),
                 BlogPosts = blogPosts,
                 NewBlogPost = new BlogPostInputModel(),
-                Contacts = contacts
+                Contacts = contacts,
+                Projects = projects,
+                NewProject = new ProjectInputModel { Tags = new List<string> { "" } } // Initialize with one tag
             };
 
             return View(model);
@@ -378,6 +383,69 @@ namespace VS_portfolio_2026.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while deleting contact message with ID: {id}", id);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddProject([Bind(Prefix = "NewProject")] ProjectInputModel input)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _logger.LogInformation("AddProject ModelState is valid. Calling database service...");
+                    
+                    var newProject = new Project
+                    {
+                        Name = input.Name,
+                        ImageUrl = input.ImageUrl,
+                        DisplayOrder = input.DisplayOrder,
+                        Tags = input.Tags ?? new List<string>() // Directly use the list
+                    };
+
+                    await _databaseService.AddProject(newProject);
+                    _logger.LogInformation("Successfully called AddProject service.");
+                }
+                else
+                {
+                    _logger.LogWarning("AddProject ModelState is invalid.");
+                     foreach (var state in ModelState)
+                    {
+                        foreach (var error in state.Value.Errors)
+                        {
+                            _logger.LogWarning("ModelState Error: Key={Key}, Error={ErrorMessage}", state.Key, error.ErrorMessage);
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while adding the project.");
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteProject(string id)
+        {
+            _logger.LogInformation("DeleteProject POST received for ID: {id}", id);
+            try
+            {
+                if (string.IsNullOrEmpty(id))
+                {
+                    _logger.LogWarning("DeleteProject failed: ID was null or empty.");
+                    return RedirectToAction("Index");
+                }
+                await _databaseService.DeleteProject(id);
+                _logger.LogInformation("Successfully called DeleteProject service for ID: {id}", id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while deleting project with ID: {id}", id);
             }
 
             return RedirectToAction("Index");

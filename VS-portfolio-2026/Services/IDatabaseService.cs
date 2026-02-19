@@ -15,12 +15,26 @@ namespace VS_portfolio_2026.Services
         Task AddExperience(Experience experience);
         Task DeleteExperience(string id);
 
-        Task<List<BlogPost>> GetBlogPosts();
-        Task AddBlogPost(BlogPost blogPost);
-        Task DeleteBlogPost(string id);
-        Task AddContact(Contact contact);
+                Task<List<BlogPost>> GetBlogPosts();
 
-        Task<List<Contact>> GetContacts();
-        Task DeleteContact(string id);
-    }
-}
+                Task AddBlogPost(BlogPost blogPost);
+
+                Task DeleteBlogPost(string id);
+
+                Task AddContact(Contact contact);
+
+                Task<List<Contact>> GetContacts();
+
+                Task DeleteContact(string id);
+
+        
+
+                Task<List<Project>> GetProjects();
+
+                Task AddProject(Project project);
+
+                Task DeleteProject(string id);
+
+            }
+
+        }

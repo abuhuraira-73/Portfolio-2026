@@ -1,4 +1,4 @@
-﻿@page
+﻿@model List<VS_portfolio_2026.Models.Project>
 @{
 }
 
@@ -258,6 +258,34 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if (Model != null && Model.Any())
+                                    {
+                                        @foreach (var project in Model)
+                                        {
+                                            <div class="col-xl-6">
+                                                <div class="tp-title-anim cs-portfolio-item anim-zoomin-wrap mb-40">
+                                                    <div class="cs-portfolio-thumb anim-zoomin not-hide-cursor" data-cursor="View<br>Demo">
+                                                        <a class="cursor-hide" href="#!">
+                                                            <img class="w-100" src="@project.ImageUrl" alt="@project.Name" loading="lazy" width="800">
+                                                        </a>
+                                                    </div>
+                                                    <div class="cs-portfolio-content d-flex align-items-center flex-wrap justify-content-between">
+                                                        <h3 class="cs-portfolio-title tp-title-anim-inner mr-20 text-white tp-ff-sequel-semi-bold text-uppercase">
+                                                            <a href="#!" class="common-underline tp-title-text">@project.Name</a>
+                                                        </h3>
+                                                        <div class="cs-portfolio-tag">
+                                                            <ul>
+                                                                @foreach(var tag in project.Tags)
+                                                                {
+                                                                    <li><a href="#!">@tag</a></li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </div>
