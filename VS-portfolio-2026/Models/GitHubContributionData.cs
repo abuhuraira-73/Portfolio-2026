@@ -6,16 +6,16 @@ namespace VS_portfolio_2026.Models
     public class GitHubContributionData
     {
         [JsonPropertyName("total")]
-        public Dictionary<string, int> Total { get; set; }
+        public Dictionary<string, int> Total { get; set; } = new();
 
         [JsonPropertyName("contributions")]
-        public List<Contribution> Contributions { get; set; }
+        public List<Contribution> Contributions { get; set; } = new();
     }
 
     public class Contribution
     {
         [JsonPropertyName("date")]
-        public string Date { get; set; }
+        public string Date { get; set; } = default!;
 
         [JsonPropertyName("count")]
         public int Count { get; set; }
@@ -32,7 +32,7 @@ namespace VS_portfolio_2026.Models
 
     public class CalendarDay
     {
-        public string Date { get; set; }
+        public string Date { get; set; } = default!;
         public int Count { get; set; }
         public int Level { get; set; }
     }
