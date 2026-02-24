@@ -182,6 +182,15 @@ This new plan outlines the specific, step-by-step technical tasks we will perfor
 
 
 
+
+
+
+
+
+
+
+
+
 ### Breakdown of Step 1: Dynamic Tags Implementation
 
 This section details the sub-steps for implementing Step 1 of the SEO plan. Each step must be approved before execution.
@@ -299,4 +308,21 @@ This section details the sub-steps for implementing Step 2 of the SEO plan. Stru
             }
             </script>
         }
+        ```
+---
+
+### Breakdown of Step 3: Create `robots.txt` File
+
+This section details the sub-steps for implementing Step 3 of the SEO plan. The `robots.txt` file guides search engine crawlers on what parts of your site they can and cannot access.
+
+**Step 3.1: Create `robots.txt` with Basic Directives and Sitemap Link**
+-   **What:** Create the `robots.txt` file in the `wwwroot` directory and populate it with directives to allow all major search engine crawlers full access to the site, along with a pointer to where the `sitemap.xml` file will be located.
+-   **How:**
+    1.  Target file: `VS-portfolio-2026/wwwroot/robots.txt`.
+    2.  Use the `write_file` tool to create this file with the following content:
+        ```
+        User-agent: *
+        Allow: /
+        
+        Sitemap: http://abuhuraira.in/sitemap.xml
         ```
