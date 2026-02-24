@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using VS_portfolio_2026.Models;
 using Microsoft.AspNetCore.Hosting;
