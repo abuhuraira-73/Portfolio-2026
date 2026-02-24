@@ -144,3 +144,159 @@ Drawing from the previous project, the following SEO and user experience best pr
 *   **Semantic HTML & Accessibility:** Use semantic HTML5 elements (`<section>`, `<h1>`, etc.) and `alt` attributes on all images to improve accessibility and SEO.
 *   **Performance:** Optimize page load times by using modern image formats like `.webp`.
 
+---
+
+### New SEO Implementation Plan
+
+This new plan outlines the specific, step-by-step technical tasks we will perform to enhance the portfolio's SEO.
+
+**Step 1: Implement Dynamic Meta and Open Graph Tags**
+- **Objective:** Make the `<title>`, `<meta name="description">`, `<meta name="keywords">`, and all Open Graph (OG) tags unique for each page.
+- **Action:**
+    1.  Modify `Views/Shared/_Layout.cshtml`.
+    2.  Replace the static `<title>` and `<meta>` tags with dynamic placeholders that use `ViewData`. For example, `ViewData["Title"]`, `ViewData["Description"]`, etc.
+    3.  Provide sensible default values in `_Layout.cshtml` in case a specific page doesn't set its own.
+    4.  In each controller action (e.g., `Index`, `About`, `Contact` in `HomeController`), set the specific `ViewData` values for the title, description, and keywords for that page.
+    5.  Add and enhance Open Graph tags in `_Layout.cshtml` to include `og:url` and `og:image`, also populated via `ViewData`.
+
+**Step 2: Add Page-Specific Structured Data (Schema.org)**
+- **Objective:** Help search engines understand the content and context of specific pages.
+- **Action:**
+    1.  **Contact Page:** In `Views/Home/Contact.cshtml`, add a `<script type="application/ld+json">` that defines a `Person` schema. This will include your name, URL, and social media profile links (`sameAs`).
+    2.  **Home Page:** In `Views/Home/Index.cshtml`, add a similar script that defines a `WebSite` schema.
+
+**Step 3: Create `robots.txt` File**
+- **Objective:** Instruct search engine crawlers on how to crawl the site.
+- **Action:**
+    1.  Create a new file named `robots.txt` inside the `wwwroot` directory.
+    2.  Add content to allow all user-agents to crawl the entire site (`User-agent: *`, `Allow: /`).
+    3.  Add a line pointing to the sitemap file: `Sitemap: http://abuhuraira.in/sitemap.xml` (using the final domain).
+
+**Step 4: Create `sitemap.xml` File**
+- **Objective:** Provide a map of all public pages to search engines for better indexing.
+- **Action:**
+    1.  Create a new file named `sitemap.xml` inside the `wwwroot` directory.
+    2.  Add XML markup that lists the URLs for all main pages: Home, About, Blog, Services, Portfolio, and Contact.
+    3.  In the future, this sitemap can be dynamically generated to automatically include new blog posts or projects. For now, a static file is sufficient.
+---
+
+
+
+### Breakdown of Step 1: Dynamic Tags Implementation
+
+This section details the sub-steps for implementing Step 1 of the SEO plan. Each step must be approved before execution.
+
+**Step 1.1: Update Layout for Dynamic Meta Tags**
+-   **What:** Modify the main layout file to make the standard SEO tags dynamic.
+-   **How:**
+    1.  Target file: `VS-portfolio-2026/Views/Shared/_Layout.cshtml`.
+    2.  Find the line: `<title>Abu Huraira - Personal Portfolio</title>`.
+    3.  Replace it with: `<title>@ViewData["Title"] - Abu Huraira's Portfolio</title>`.
+    4.  Find the line: `<meta name="description" content="">`.
+    5.  Replace it with a block containing description, keywords, and author:
+        ```html
+        <meta name="description" content="@(ViewData["Description"] ?? "Welcome to the portfolio of Abu Huraira, a skilled web and software developer.")">
+        <meta name="keywords" content="@(ViewData["Keywords"] ?? "Abu Huraira, portfolio, web developer, software engineer, .NET, C#, React")">
+        <meta name="author" content="Abu Huraira">
+        ```
+    *Note: This step intentionally separates standard meta tags from Open Graph tags for clarity.*
+
+**Step 1.2: Enhance Layout with Dynamic Open Graph (OG) Tags**
+-   **What:** Add the necessary Open Graph tags to the main layout file for better social media sharing.
+-   **How:**
+    1.  Target file: `VS-portfolio-2026/Views/Shared/_Layout.cshtml`.
+    2.  Locate the meta tags block modified in Step 1.1.
+    3.  Append the following lines after the `<meta name="author"...>` tag:
+        ```html
+        <meta property="og:title" content="@ViewData["Title"] - Abu Huraira's Portfolio" />
+        <meta property="og:description" content="@(ViewData["Description"] ?? "Welcome to the portfolio of Abu Huraira, a skilled web and software developer.")" />
+        <meta property="og:image" content="@(ViewData["OgImage"] ?? "http://abuhuraira.in/img/my-img/index/hero-image.jpg")" />
+        <meta property="og:url" content="@(ViewData["OgUrl"] ?? "http://abuhuraira.in")" />
+        <meta property="og:type" content="website" />
+        ```
+
+**Step 1.3: Set Metadata for the Home Page**
+-   **What:** Update the controller to provide specific SEO metadata for the home page (the `Index` view).
+-   **How:**
+    1.  Target file: `VS-portfolio-2026/Controllers/HomeController.cs`.
+    2.  Locate the `public IActionResult Index()` method.
+    3.  Inside the method, before the `return View();` line, add the following C# code:
+        ```csharp
+        ViewData["Title"] = "Home";
+        ViewData["Description"] = "Personal portfolio of Abu Huraira, a web and software developer specializing in building scalable, high-performance digital products.";
+        ViewData["Keywords"] = "Abu Huraira, portfolio, web developer, software developer, C#, .NET, ASP.NET, full stack";
+        ViewData["OgUrl"] = "http://abuhuraira.in/";
+        ```
+
+**Step 1.4: Set Metadata for the About Page**
+-   **What:** Update the controller to provide specific SEO metadata for the "About" page.
+-   **How:**
+    1.  Target file: `VS-portfolio-2026/Controllers/HomeController.cs`.
+    2.  Locate the `public async Task<IActionResult> About()` method.
+    3.  Inside the method, before the return statement, add the following C# code:
+        ```csharp
+        ViewData["Title"] = "About";
+        ViewData["Description"] = "Learn about Abu Huraira's journey, skills in full-stack development, and experience with technologies like .NET, C#, and modern web frameworks.";
+        ViewData["Keywords"] = "about me, Abu Huraira, skills, experience, full-stack, software engineer, C# developer";
+        ViewData["OgUrl"] = "http://abuhuraira.in/Home/About";
+        ```
+
+**Step 1.5: Set Metadata for All Other Pages**
+-   **What:** Repeat the process for the remaining pages (`Blog`, `Service`, `Portfolio`, `Contact`) to ensure they all have unique, descriptive metadata.
+-   **How:**
+    1.  Target file: `VS-portfolio-2026/Controllers/HomeController.cs`.
+    2.  For each action (`Blog`, `Service`, `Portfolio`, `Contact`), add specific `ViewData` settings for `Title`, `Description`, `Keywords`, and `OgUrl` just like in the steps above.
+---
+
+### Breakdown of Step 2: Structured Data (Schema.org)
+
+This section details the sub-steps for implementing Step 2 of the SEO plan. Structured data helps search engines understand your content's meaning.
+
+**Step 2.1: Ensure Layout Can Render Page-Specific Scripts**
+-   **What:** Verify that the main layout file (`_Layout.cshtml`) has a dedicated section for rendering scripts. This is a prerequisite for adding the schema scripts to individual pages.
+-   **How:**
+    1.  Target file: `VS-portfolio-2026/Views/Shared/_Layout.cshtml`.
+    2.  Locate the closing `</body>` tag.
+    3.  Check if the line `@RenderSection("Scripts", required: false)` exists just before the `</body>` tag.
+    4.  If it does not exist, it must be added. This is a standard ASP.NET MVC practice.
+
+**Step 2.2: Add 'Person' Schema to Contact Page**
+-   **What:** Add structured data to the Contact page to tell search engines that this site represents a specific person and to link your social media profiles. This helps build authority.
+-   **How:**
+    1.  Target file: `VS-portfolio-2026/Views/Home/Contact.cshtml`.
+    2.  At the very end of the file, add the following Razor code block:
+        ```html
+        @section Scripts {
+            <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Abu Huraira",
+              "url": "http://abuhuraira.in",
+              "sameAs": [
+                "https://www.linkedin.com/in/abuhurairajamal/",
+                "https://github.com/abuhuraira-73",
+                "https://x.com/Abuhuraira0703"
+              ]
+            }
+            </script>
+        }
+        ```
+
+**Step 2.3: Add 'WebSite' Schema to Home Page**
+-   **What:** Add structured data to the Home page to explicitly identify the website's name and primary URL to search engines.
+-   **How:**
+    1.  Target file: `VS-portfolio-2026/Views/Home/Index.cshtml`.
+    2.  At the very end of the file, add the following Razor code block:
+        ```html
+        @section Scripts {
+            <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Abu Huraira's Portfolio",
+              "url": "http://abuhuraira.in/"
+            }
+            </script>
+        }
+        ```

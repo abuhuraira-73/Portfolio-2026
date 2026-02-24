@@ -58,6 +58,10 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        ViewData["Title"] = "Home";
+        ViewData["Description"] = "Personal portfolio of Abu Huraira, a web and software developer specializing in Java, Python, C# and building scalable, high-performance digital products.";
+        ViewData["Keywords"] = "Abu Huraira, portfolio, personal portfolio, web developer, software engineer, Java developer, .NET developer, C# developer, React developer";
+        ViewData["OgUrl"] = "http://abuhuraira.in/";
         return View();
     }
 
@@ -69,6 +73,11 @@ public class HomeController : Controller
 
     public async Task<IActionResult> About()
     {
+        ViewData["Title"] = "About";
+        ViewData["Description"] = "Learn about Abu Huraira's journey, skills in full-stack development, and experience with technologies like .NET, C#, and modern web frameworks.";
+        ViewData["Keywords"] = "about me, Abu Huraira, skills, experience, full-stack, software engineer, C# developer";
+        ViewData["OgUrl"] = "http://abuhuraira.in/Home/About";
+
         var educations = await _databaseService.GetEducations();
         var experiences = await _databaseService.GetExperiences();
 
@@ -84,23 +93,39 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Portfolio()
     {
+        ViewData["Title"] = "Portfolio";
+        ViewData["Description"] = "Explore a collection of projects by Abu Huraira, showcasing skills in web development, software engineering, and more.";
+        ViewData["Keywords"] = "projects, portfolio, web development, software projects, C#, .NET, React";
+        ViewData["OgUrl"] = "http://abuhuraira.in/Home/Portfolio";
         var projects = await _databaseService.GetProjects();
         return View(projects);
     }
 
     public IActionResult Service()
     {
+        ViewData["Title"] = "Services";
+        ViewData["Description"] = "Discover the professional services offered by Abu Huraira, including custom web application development, backend API design, and software consulting.";
+        ViewData["Keywords"] = "services, web development, software consulting, API development, C#, ASP.NET Core, freelance";
+        ViewData["OgUrl"] = "http://abuhuraira.in/Home/Service";
         return View();
     }
 
 
     public IActionResult Contact()
     {
+        ViewData["Title"] = "Contact";
+        ViewData["Description"] = "Get in touch with Abu Huraira to discuss a project, ask a question, or say hello. Looking forward to connecting with you.";
+        ViewData["Keywords"] = "contact, get in touch, contact me, email, contact form, hire me";
+        ViewData["OgUrl"] = "http://abuhuraira.in/Home/Contact";
         return View();
     }
 
     public async Task<IActionResult> Blog()
     {
+        ViewData["Title"] = "Blog";
+        ViewData["Description"] = "Read articles and posts from Abu Huraira on software development, technology trends, and career insights.";
+        ViewData["Keywords"] = "blog, articles, tech blog, software development, coding, programming, career advice";
+        ViewData["OgUrl"] = "http://abuhuraira.in/Home/Blog";
         var blogPosts = await _databaseService.GetBlogPosts();
         return View(blogPosts);
     }

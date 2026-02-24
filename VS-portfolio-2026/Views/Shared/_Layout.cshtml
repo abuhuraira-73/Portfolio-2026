@@ -5,8 +5,20 @@
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Abu Huraira - Personal Portfolio</title>
-    <meta name="description" content="">
+    <title>@ViewData["Title"] - Abu Huraira's Portfolio</title>
+    <meta name="description"
+        content="@(ViewData["Description"] ?? "Welcome to Abu Huraira’s portfolio — web, Java, Python, and software developer.")">
+    <meta name="keywords"
+        content="@(ViewData["Keywords"] ?? "Abu Huraira, portfolio, personal portfolio, web developer, software engineer, Java developer, .NET developer, C# developer, React developer")">
+    <meta name="author" content="Abu Huraira">
+
+    <meta property="og:title" content="@ViewData["Title"] - Abu Huraira's Portfolio" />
+    <meta property="og:description"
+        content="@(ViewData["Description"] ?? "Welcome to the portfolio of Abu Huraira, a skilled web and software developer.")" />
+    <meta property="og:image"
+        content="@(ViewData["OgImage"] ?? "http://abuhuraira.in/img/my-img/index/hero-image.jpg")" />
+    <meta property="og:url" content="@(ViewData["OgUrl"] ?? "http://abuhuraira.in")" />
+    <meta property="og:type" content="website" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Place favicon.ico in the root directory -->
@@ -366,6 +378,7 @@
     </div>
 
 
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>
