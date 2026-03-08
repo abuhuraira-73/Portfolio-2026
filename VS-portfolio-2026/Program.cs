@@ -4,7 +4,7 @@ using VS_portfolio_2026.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 // Register the new database service as a singleton
 builder.Services.AddSingleton<IDatabaseService, MongoDbService>();
