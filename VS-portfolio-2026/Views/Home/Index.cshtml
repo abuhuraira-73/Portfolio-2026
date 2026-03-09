@@ -333,11 +333,60 @@
 </main>
 @section Scripts {
     <script type="application/ld+json">
-                                    {
-                                      "@@context": "https://schema.org",
-                                      "@@type": "WebSite",
-                                      "name": "Abu Huraira's Portfolio",
-                                      "url": "http://abuhuraira.in/"
-                                    }
-                                    </script>
-}
+                                        {
+                                          "@@context": "https://schema.org",
+                                          "@@type": "WebSite",
+                                          "name": "Abu Huraira's Portfolio",
+                                          "url": "http://abuhuraira.in/"
+                                        }
+        </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Only run on mobile/touch devices
+            if (window.innerWidth < 992) {
+                const projectItems = document.querySelectorAll('.pp-porfolio-title-wrap ul li');
+                const bgBox = document.querySelector('#pp-porfolio-bg-box');
+
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '-30% 0% -30% 0%', // triggers in the middle 40% of the screen
+                    threshold: 0.5 // item must be 50% visible in that zone
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const target = entry.target;
+                            const rel = target.getAttribute('rel');
+
+                            // 1. Update the Text/Item state
+                            projectItems.forEach(item => item.classList.remove('active'));
+                            target.classList.add('active');
+
+                            // 2. Directly swap the background images like the theme does
+                            if (bgBox && rel) {
+                                // Find all images in the bg-box and hide them
+                                const allImages = bgBox.querySelectorAll('img');
+                                allImages.forEach(img => {
+                                    img.style.opacity = '0';
+                                    img.style.visibility = 'hidden';
+                                });
+
+                                // Show the specific image for this project
+                                const activeImg = bgBox.querySelector('.' + rel);
+                                if (activeImg) {
+                                    activeImg.style.opacity = '1';
+                                    activeImg.style.visibility = 'visible';
+                                }
+                            }
+                        }
+                    });
+                }, observerOptions);
+
+                projectItems.forEach(item => {
+                    observer.observe(item);
+                });
+            }
+        });
+    </script>}
