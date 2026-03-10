@@ -110,7 +110,6 @@
 
                     </nav>
                 </div>
-                <span class="hamburger-close-btn hamburger-mobile-close-btn d-md-none">CLOSE</span>
             </div>
         </div>
     </div>
@@ -298,8 +297,6 @@
                                         <a href="~/Home/Portfolio">Portfolio</a>
                                         <a href="~/Home/Contact">Contact</a>
                                         <a asp-controller="Admin" asp-action="Login">Admin</a>
-                                        <a asp-controller="Admin" asp-action="Login 2">Admin</a>
-
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +304,8 @@
                                 <div class="tp-footer-widget cs-footer-widget-2 mb-30 tp_fade_anim" data-delay=".6">
                                     <span class="tp-footer-dec text-white">Searching for exceptional talents?</span>
                                     <h4 class="tp-footer-email tp-ff-sequel-roman text-white"><a
-                                            href="mailto:abuhuraira1514@gmail.com">abuhuraira1514@gmail.com</a></h4>
+                                           href="mailto:abuhuraira1514@gmail.com">abuhuraira1514@gmail.com</a>
+                                    </h4>                                
                                 </div>
                             </div>
                         </div>
@@ -338,7 +336,7 @@
                                                     stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
                                             </svg>
                                         </a>
-                                        <a href="https://twitter.com/abuhuraira_73">
+                                        <a href="https://twitter.com/abuhuraira0703">
                                             Twitter
                                             <svg width="10" height="12" viewBox="0 0 10 12" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -359,7 +357,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-3">
-                                    <div class="tp-footer-copyright-wrap text-lg-end mb-20 tp_fade_anim"
+                                    <div class="tp-footer-copyright-wrap text-lg-end mb-20 tp_fade_anim d-none d-lg-block"
                                         data-delay=".7">
                                         <span class="tp-footer-copyright"> <span class="update-year"></span></span>
                                     </div>
@@ -369,7 +367,7 @@
                                         data-delay=".4" data-fade-from="bottom" data-ease="bounce">
                                         <h2
                                             class="tp-title-anim-inner cs-footer-bigtitle justify-content-center tp-ff-sequel-heavy-disp text-uppercase text-white">
-                                            <a class="tp-title-text" href="contact-us-light.html">Say Hello!</a>
+                                            <a class="tp-title-text" href="#!">Say Hello!</a>
                                         </h2>
                                     </div>
                                 </div>
@@ -409,12 +407,23 @@
 
 
     @RenderSection("Scripts", required: false)
+    <style>
+        @@media (max-width: 767px) {
+            .tp-footer-email {
+                word-break: break-all !important;
+                font-size: 24px !important;
+            }
+            .tp-footer-email a {
+                font-size: 24px !important;
+            }
+        }
+    </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const menuArea = document.querySelector('.tp-offcanvas-2-area');
             const menuContent = document.querySelector('.tp-offcanvas-2-wrapper');
             const closeBtn = document.querySelector('.hamburger-close-btn');
-            
+
             if (menuArea && menuContent && closeBtn) {
                 document.addEventListener('click', function (event) {
                     // 1. Check if the menu is actually open
