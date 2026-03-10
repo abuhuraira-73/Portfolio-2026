@@ -306,3 +306,54 @@
     </div>
     <!-- portfolio area end -->
 </main>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Only run on small screens where hover doesn't exist
+            if (window.innerWidth < 992) {
+                const portfolioItems = document.querySelectorAll('.cs-portfolio-item');
+                
+                const observerOptions = {
+                    root: null,
+                    // Top, Right, Bottom, Left
+                    // This creates a 10% horizontal band starting at 25% from the top
+                    rootMargin: '-25% 0% -65% 0%', 
+                    threshold: 0
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const thumbImg = entry.target.querySelector('.cs-portfolio-thumb img');
+                        const titleText = entry.target.querySelector('.tp-title-text');
+
+                        if (entry.isIntersecting) {
+                            // ACTIVATE: Zoom in and highlight
+                            if (thumbImg) {
+                                thumbImg.style.transform = 'perspective(400px) rotateX(0.09deg) rotateY(0) scale(1.1)';
+                                thumbImg.style.transition = 'transform 0.5s ease, filter 0.5s ease';
+                                thumbImg.style.filter = 'saturate(1)';
+                            }
+                            if (titleText) {
+                                titleText.style.color = 'var(--tp-theme-primary)';
+                            }
+                        } else {
+                            // DEACTIVATE: Reset to original
+                            if (thumbImg) {
+                                thumbImg.style.transform = 'perspective(400px) rotateX(0deg) rotateY(0) scale(1)';
+                                thumbImg.style.filter = '';
+                            }
+                            if (titleText) {
+                                titleText.style.color = '';
+                            }
+                        }
+                    });
+                }, observerOptions);
+
+                portfolioItems.forEach(item => {
+                    observer.observe(item);
+                });
+            }
+        });
+    </script>
+}
