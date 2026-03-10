@@ -3,6 +3,9 @@
 }
 <br />
 <br />
+<br />
+<br />
+<br />
 <main>
     <br />
     <!-- inner-service-us-area-start -->
@@ -289,3 +292,51 @@
 
 
 </main>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.innerWidth < 992) {
+                const serviceItems = document.querySelectorAll('.tp-service-item');
+                const imageWrappers = document.querySelectorAll('.tp-service-img-wrapper .hover-image');
+                
+                const observerOptions = {
+                    root: null,
+                    // Top, Right, Bottom, Left
+                    // This creates a 10% horizontal band starting at 75% from the top
+                    rootMargin: '-75% 0% -15% 0%', 
+                    threshold: 0
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const target = entry.target;
+                            const index = Array.from(serviceItems).indexOf(target);
+                            
+                            // 1. Update the Text state (active class)
+                            serviceItems.forEach(item => item.classList.remove('active'));
+                            target.classList.add('active');
+
+                            // 2. Swap the images in the left column
+                            if (imageWrappers[index]) {
+                                imageWrappers.forEach(img => {
+                                    img.classList.remove('active');
+                                    img.style.opacity = '0';
+                                    img.style.visibility = 'hidden';
+                                });
+                                imageWrappers[index].classList.add('active');
+                                imageWrappers[index].style.opacity = '1';
+                                imageWrappers[index].style.visibility = 'visible';
+                            }
+                        }
+                    });
+                }, observerOptions);
+
+                serviceItems.forEach(item => {
+                    observer.observe(item);
+                });
+            }
+        });
+    </script>
+}
