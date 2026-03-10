@@ -315,8 +315,22 @@
                             const index = Array.from(serviceItems).indexOf(target);
                             
                             // 1. Update the Text state (active class)
-                            serviceItems.forEach(item => item.classList.remove('active'));
+                            serviceItems.forEach(item => {
+                                item.classList.remove('active');
+                                const title = item.querySelector('.tp-service-title a');
+                                if (title) {
+                                    title.style.color = 'rgba(255, 255, 255, 0.5)'; // or your theme's light grey
+                                    title.style.textDecoration = 'none';
+                                }
+                            });
                             target.classList.add('active');
+                            const activeTitle = target.querySelector('.tp-service-title a');
+                            if (activeTitle) {
+                                activeTitle.style.color = '#fff';
+                                activeTitle.style.textDecoration = 'underline';
+                                activeTitle.style.textDecorationThickness = '1px';
+                                activeTitle.style.textUnderlineOffset = '10px';
+                            }
 
                             // 2. Swap the images in the left column
                             if (imageWrappers[index]) {
