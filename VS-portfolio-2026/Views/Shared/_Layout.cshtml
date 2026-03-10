@@ -191,8 +191,8 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8 d-none d-lg-block">
-                            <div class="pp-header-social mb-20">
+                        <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-8">
+                            <div class="pp-header-social mb-20 @(ViewData["Title"]?.ToString() == "Home" ? "d-none d-lg-block" : "")">
                                 <a class="tp-btn tp-btn-white text-uppercase"
                                     href="https://www.linkedin.com/in/abuhurairajamal/" target="_blank">
                                     <span>
