@@ -92,7 +92,7 @@
         <div class="offcanvas-bg"></div>
         <div class="tp-offcanvas-2-wrapper offcanvas-menu">
             <div class="tp-offcanvas-2-left">
-                <div class="tp-header-logo d-flex justify-content-between align-items-center mb-50">
+                <div class="tp-header-logo d-flex justify-content-end align-items-center ">
                     <span class="hamburger-close-btn">
                         <svg width="37" height="38" viewBox="0 0 37 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.19141 9.80762L27.5762 28.1924" stroke="currentColor" stroke-width="1.5"
@@ -106,7 +106,9 @@
                 <div class="tp-header-logo d-flex justify-content-between align-items-center mb-10">
                 </div>
                 <div class="tp-offcanvas-menu counter-row">
-                    <nav>x</nav>
+                    <nav>
+
+                    </nav>
                 </div>
                 <span class="hamburger-close-btn hamburger-mobile-close-btn d-md-none">CLOSE</span>
             </div>
@@ -407,6 +409,25 @@
 
 
     @RenderSection("Scripts", required: false)
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuArea = document.querySelector('.tp-offcanvas-2-area');
+            const menuContent = document.querySelector('.tp-offcanvas-2-wrapper');
+            const closeBtn = document.querySelector('.hamburger-close-btn');
+            
+            if (menuArea && menuContent && closeBtn) {
+                document.addEventListener('click', function (event) {
+                    // 1. Check if the menu is actually open
+                    if (menuArea.classList.contains('menu-open')) {
+                        // 2. If the click was OUTSIDE the menu content AND it wasn't the button that opened it
+                        if (!menuContent.contains(event.target) && !event.target.closest('.hamburger-open-btn')) {
+                            closeBtn.click();
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
