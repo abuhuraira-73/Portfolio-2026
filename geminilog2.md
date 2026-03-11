@@ -29,24 +29,13 @@ This file outlines the plan to improve site performance by implementing browser 
 
 ---
 
-### Step 2: Defer Loading of Non-Critical CSS
+### Step 2: Defer Loading of Non-Critical CSS (Updated)
 
-**Objective:** Prevent large CSS files from blocking the initial rendering of the page. This will directly improve your FCP and LCP metrics by allowing your page content to appear sooner.
+**Objective:** Prevent non-critical CSS files from blocking the initial rendering while ensuring the main layout remains stable.
 
-**Step 2.1: Modify CSS Links in `_Layout.cshtml`**
--   **What:** We will change how your main CSS files are loaded. Instead of the standard blocking method, we will instruct the browser to load them asynchronously (in the background).
--   **How:**
-    1.  We will target the `_Layout.cshtml` file.
-    2.  For each of the large CSS files (`main.css`, `font-awesome-pro.css`, `bootstrap.min.css`), we will change the `<link>` tag from this:
-        ```html
-        <link rel="stylesheet" href="~/css/main.css">
-        ```
-        To this asynchronous pattern:
-        ```html
-        <link rel="preload" href="~/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="~/css/main.css"></noscript>
-        ```
-    *   **Explanation:** This tells the browser to download the file without stopping page rendering. Once downloaded, it's applied. The `<noscript>` tag ensures it still works for users with JavaScript disabled.
+**Step 2.1: Implement Hybrid Loading**
+- **Critical CSS (Blocking)**: `bootstrap.min.css` and `main.css` have been reverted to standard blocking links. This is necessary to prevent **FOUC (Flash of Unstyled Content)**, ensuring the site doesn't appear as unstructured text for 0.5s on load.
+- **Non-Critical CSS (Deferred)**: Files like `font-awesome-pro.css`, `swiper-bundle.css`, `magnific-popup.css`, and `nice-select.css` continue to use the `preload` pattern to speed up the initial page draw.
 
 ---
 

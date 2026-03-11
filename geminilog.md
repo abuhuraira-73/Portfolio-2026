@@ -326,3 +326,32 @@ This section details the sub-steps for implementing Step 3 of the SEO plan. The 
         
         Sitemap: http://abuhuraira.in/sitemap.xml
         ```
+
+---
+
+### Phase 5: Refinement & Mobile Optimization (March 2026 Session)
+
+This phase focused on "polishing" the experience, specifically for mobile users, and ensuring the development environment was stable.
+
+#### 1. Development Environment Fixes
+- **Razor Runtime Compilation**: Enabled in `Program.cs` and `.csproj` to allow instant UI updates without server restarts.
+- **Port Conflict Resolution**: Moved local development to Port 5005 to bypass ghost processes on Port 5000.
+
+#### 2. Mobile Interaction Enhancements (Intersection Observer)
+Since mobile devices lack a cursor hover state, we implemented "Scroll-Triggered Interactions" using the Intersection Observer API:
+- **Featured Projects (Home)**: Images now swap automatically as project titles scroll through the center of the screen.
+- **Portfolio Page**: Project cards now "zoom in" and highlight their titles when they hit the upper 25% of the screen.
+- **Services Page**: Service titles now highlight and swap their corresponding images when they reach 75% down the screen.
+
+#### 3. Responsive UI Fixes
+- **Hero Image (Home)**: Fixed cropping issues on mobile by adjusting width and using `object-fit: cover`.
+- **Title Wrapping**: Prevented long project names (Chromaic, Talksphere, etc.) from breaking into two lines on mobile using `white-space: nowrap`.
+- **"About Me" Slider**: Fixed image squishing on mobile by forcing a specific height and using `object-fit: cover`.
+- **Skill Marquees**: Duplicated the marquee to create two rows moving in opposite directions at synchronized speeds for a more dynamic look. Shrunk skill icons/boxes for mobile.
+- **Footer Email**: Implemented `word-break: break-all` and responsive sizing to ensure long email addresses fit on phone screens without breaking the laptop layout.
+- **Menu Logic**: Moved the offcanvas close button to the right and implemented a "click outside to close" listener for better UX.
+
+#### 4. Performance & Visual Stability
+- **FOUC Prevention**: Reverted critical CSS (`bootstrap` and `main.css`) to blocking loads to eliminate the 0.5s flash of unstyled content during page refresh.
+- **Conditional Visibility**: Used Bootstrap classes to hide unnecessary spacers (`<br>`) and lists on mobile that were cluttering the viewport.
+
