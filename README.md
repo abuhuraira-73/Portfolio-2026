@@ -24,13 +24,16 @@ Welcome to my digital headquarters. This is a high-performance, SEO-optimized po
 
 ## 🏗️ Featured Projects
 
-| Project | Description | Tech |
-| :--- | :--- | :--- |
-| **Nexus** | A SaaS social media hub for unified digital presence. | .NET, MongoDB |
-| **Talksphere** | Real-time communication platform with advanced connectivity. | WebSocket, JS |
-| **Chromaic** | Modern, minimal visual identity system for GenZ brands. | Branding, UI/UX |
-| **Cartnova** | High-conversion E-commerce architecture. | Responsive Web |
-| **RunQuest** | AI-driven fitness game ecosystem. | GameDev, AI |
+| Project | Description | Tech | Repo |
+| :--- | :--- | :--- | :--- |
+| **Nexus** | Collaborative digital whiteboard & visual organization hub. | React, MongoDB | [🔗 View](https://github.com/abuhuraira-73/Nexus) |
+| **Talksphere** | Real-time communication platform with advanced connectivity. | WebSocket, Java | [🔗 View](https://github.com/abuhuraira-73/TalkSphere) |
+| **Chromaic** | Modern MERN stack e-commerce ecosystem. | MERN Stack | [🔗 View](https://github.com/abuhuraira-73/chromaic) |
+| **Cartnova** | High-conversion E-commerce architecture. | JavaScript | [🔗 View](https://github.com/abuhuraira-73/CartNova) |
+| **RunQuest** | AI-driven fitness game ecosystem. | Python | [🔗 View](https://github.com/abuhuraira-73/RunQuest) |
+| **ResQ** | Full-stack healthcare management for elderly care. | HTML/CSS, MongoDB | [🔗 View](https://github.com/abuhuraira-73/ResQ) |
+| **Sahayta** | Foundation platform for social support and donations. | Java, Web | [🔗 View](https://github.com/abuhuraira-73/Sahayta-Foundation) |
+| **Croissocafe** | Concept brand identity and responsive landing page. | HTML/CSS | [🔗 View](https://github.com/abuhuraira-73/Croissocafe) |
 
 ## 🏃‍♂️ How to Run
 
