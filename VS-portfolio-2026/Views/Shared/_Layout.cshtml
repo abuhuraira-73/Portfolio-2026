@@ -2,6 +2,15 @@
 <html class="no-js cunnet-dark" lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZH9NG6P2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-C5ZH9NG6P2');
+    </script>
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -12,14 +21,82 @@
         content="@(ViewData["Keywords"] ?? "Abu Huraira, portfolio, personal portfolio, web developer, software engineer, Java developer, .NET developer, C# developer, React developer")">
     <meta name="author" content="Abu Huraira">
 
+    <meta property="og:site_name" content="Abu Huraira's Portfolio" />
     <meta property="og:title" content="@ViewData["Title"] - Abu Huraira's Portfolio" />
     <meta property="og:description"
-        content="@(ViewData["Description"] ?? "Welcome to the portfolio of Abu Huraira, a skilled web and software developer.")" />
+        content="@(ViewData["Description"] ?? "Welcome to Abu Huraira’s portfolio — web, Java, Python, and software developer.")" />
     <meta property="og:image"
         content="@(ViewData["OgImage"] ?? "http://abuhuraira.in/img/my-img/index/hero-image.jpg")" />
     <meta property="og:url" content="@(ViewData["OgUrl"] ?? "http://abuhuraira.in")" />
     <meta property="og:type" content="website" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@@Abuhuraira0703" />
+    <meta name="twitter:creator" content="@@Abuhuraira0703" />
+    <meta name="twitter:title" content="@ViewData["Title"] - Abu Huraira's Portfolio" />
+    <meta name="twitter:description"
+        content="@(ViewData["Description"] ?? "Welcome to Abu Huraira’s portfolio — web, Java, Python, and software developer.")" />
+    <meta name="twitter:image"
+        content="@(ViewData["OgImage"] ?? "http://abuhuraira.in/img/my-img/index/hero-image.jpg")" />
+
+    <!-- Theme Color (Slack / Discord Sidebar) -->
+    <meta name="theme-color" content="#1e1e1e" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="@(ViewData["OgUrl"] ?? "http://abuhuraira.in")" />
+
+    <script type="application/ld+json">
+    @{
+        var path = Context.Request.Path.ToString().ToLower();
+        var isProject = path.Contains("/portfolio/") && path != "/portfolio" && path != "/portfolio/index";
+    }
+    {
+      "@@context": "https://schema.org",
+      "@@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "http://abuhuraira.in/"
+        }
+        @if (path != "/" && path != "/home" && path != "/home/index")
+        {
+            if (isProject)
+            {
+                <text>
+                ,{
+                  "@@type": "ListItem",
+                  "position": 2,
+                  "name": "Portfolio",
+                  "item": "http://abuhuraira.in/Home/Portfolio"
+                },
+                {
+                  "@@type": "ListItem",
+                  "position": 3,
+                  "name": "@ViewData["Title"]",
+                  "item": "http://abuhuraira.in@Context.Request.Path"
+                }
+                </text>
+            }
+            else
+            {
+                <text>
+                ,{
+                  "@@type": "ListItem",
+                  "position": 2,
+                  "name": "@ViewData["Title"]",
+                  "item": "http://abuhuraira.in@Context.Request.Path"
+                }
+                </text>
+            }
+        }
+      ]
+    }
+    </script>
 
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" sizes="180x180" href="~/favicon_io/apple-touch-icon.png">
@@ -29,32 +106,26 @@
     <link rel="shortcut icon" href="~/favicon_io/favicon.ico">
 
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
-    <link rel="preload" href="~/css/font-awesome-pro.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="~/css/font-awesome-pro.css">
-    </noscript>
+    <link rel="stylesheet" href="~/css/font-awesome-pro.css">
+    <link rel="stylesheet" href="~/css/swiper-bundle.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/nice-select.css">
+    <link rel="stylesheet" href="~/css/spacing.css">
+    <link rel="stylesheet" href="~/css/main.css?v=1.1">
 
-    <link rel="preload" href="~/css/swiper-bundle.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="~/css/swiper-bundle.css">
-    </noscript>
-    <link rel="preload" href="~/css/magnific-popup.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="~/css/magnific-popup.css">
-    </noscript>
-    <link rel="preload" href="~/css/nice-select.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="~/css/nice-select.css">
-    </noscript>
-
-    <link rel="preload" href="~/css/spacing.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="~/css/spacing.css">
-    </noscript>
-    <link rel="stylesheet" href="~/css/main.css">
-
-
-
+    <style>
+        /* Immediate fix for mobile menu flash */
+        .tp-offcanvas-2-area { 
+            visibility: hidden; 
+            opacity: 0;
+            pointer-events: none;
+        }
+        .tp-offcanvas-2-area.menu-open { 
+            visibility: visible; 
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
 </head>
 
 <body class="tp-magic-cursor">
@@ -391,7 +462,7 @@
             <script src="~/js/slider-init.js" defer></script>
             <script src="~/js/ajax-form.js" defer></script>
             <!-- Main controller (MUST BE LAST) -->
-            <script src="~/js/main.js" defer></script>
+            <script src="~/js/main.js?v=1.1" defer></script>
             <!-- Cursor (optional but last) -->
             <script src="~/js/tp-cursor.js" defer></script>
 

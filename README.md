@@ -9,8 +9,8 @@ Welcome to my digital headquarters. This is a high-performance, SEO-optimized po
 
 ## 🧐 What's Inside?
 
-*   **⚡ High Performance**: Optimized with hybrid CSS loading to eliminate FOUC and browser caching for lightning-fast repeat visits.
-*   **📱 Mobile-First Precision**: Custom "Intersection Observer" logic that simulates hover effects on touch devices—swapping project images and zooming cards as you scroll.
+*   **⚡ High Performance**: Optimized with reliable CSS loading and cache-busting versioning to ensure instant, "fire" layouts on every visit.
+*   **📱 Mobile-First Precision**: Custom "Intersection Observer" logic and robust mobile styling that stays clean even on slow network connections.
 *   **🎨 Dynamic Skill Marquees**: Dual-direction, synchronized scrolling rows creating a vibrant, high-energy tech stack showcase.
 *   **🛡️ Secure Admin Panel**: A private dashboard for real-time content management (Projects, Education, Experience, and Blog) powered by MongoDB.
 *   **🔍 SEO Engineered**: Dynamic meta tags, Open Graph protocol integration, and automated schema.org structured data for maximum search engine visibility.

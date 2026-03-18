@@ -25,5 +25,23 @@ This file tracks the changes made to prepare the project for hosting via FileZil
 - **Action:** Upload the **contents** of the `publish` folder (not the folder itself) to the server's web root.
 - **Verification:** Once uploaded, the domain should correctly load the application and connect to the MongoDB database.
 
+## 5. Post-Hosting Fixes - March 18, 2026
+- **MongoDB Connection:** Corrected password mismatch (underscore-free version) and verified Atlas IP Whitelist.
+- **Mobile View Layout:** Fixed "cooked" layout by simplifying CSS loading logic and adding cache-busting versioning (`?v=1.1`).
+- **SEO Foundation:** 
+    - Created `robots.txt` with Admin exclusion.
+    - Created `sitemap.xml` covering all 14+ pages.
+    - Added dynamic metadata to `PortfolioController` for every project.
+    - Verified `Person` and `WebSite` schema implementation.
+- **Elite SEO Implementation (March 18, 2026):**
+    - **Master Social Block:** Implemented high-quality social cards for LinkedIn, X (Twitter), Facebook, WhatsApp, and Discord.
+    - **Canonical Identity:** Added `<link rel="canonical">` to prevent duplicate content issues and consolidate SEO authority.
+    - **Breadcrumb Schema:** Added dynamic JSON-LD structured data for `Home > Portfolio > Project` hierarchy.
+    - **Theme Optimization:** Integrated `theme-color` for custom branding in Slack and Discord previews.
+
+## 🚀 Upcoming Post-Hosting SEO Tasks (TODO)
+- **Search Console:** Submit `sitemap.xml` and verify domain ownership.
+- **Google Analytics:** Integrate tracking code for visitor insights.
+
 ---
 *Note: Do not upload the `.cs`, `.csproj`, or `obj/` folders to the server. Only the files inside the `publish` directory are needed.*
