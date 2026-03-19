@@ -40,8 +40,8 @@ This file tracks the changes made to prepare the project for hosting via FileZil
     - **Theme Optimization:** Integrated `theme-color` for custom branding in Slack and Discord previews.
 
 ## 🚀 Upcoming Post-Hosting SEO Tasks (TODO)
-- **Search Console:** Submit `sitemap.xml` and verify domain ownership.
-- **Google Analytics:** Integrate tracking code for visitor insights.
+- **Search Console:** Submit `sitemap.xml` and verify domain ownership. (IN PROGRESS - Sitemap submitted)
+- **Google Analytics:** Integrated GA4 tracking code (`G-C5ZH9NG6P2`) into `_Layout.cshtml`. (COMPLETED ✅)
 
 ---
 *Note: Do not upload the `.cs`, `.csproj`, or `obj/` folders to the server. Only the files inside the `publish` directory are needed.*
